@@ -6,16 +6,23 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Ludvig
  */
 @Entity
+@NamedQuery(name = "Address.deleteAllRows", query = "DELETE from Address")
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,12 +31,19 @@ public class Address implements Serializable {
     private int id;
     private String street;
     private String additionalInfo;
+    
+    @OneToMany(mappedBy = "a")
+    private List<Person> persons;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="CITYINFO_ID") //navn på kolonne som indeholder foreign key
+    private CityInfo ci;
 
     public Address() {
     }
     
-    public Address(int id, String street, String additionalInfo) {
-        this.id = id;
+    public Address(String street, String additionalInfo) {
+        //this.id = id;
         this.street = street;
         this.additionalInfo = additionalInfo;
     }
