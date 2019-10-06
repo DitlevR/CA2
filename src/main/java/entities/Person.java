@@ -8,6 +8,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,11 +44,14 @@ public class Person implements Serializable {
     @JoinColumn(name = "ADDRESS_ID")
     private Address a;
 
-    @ManyToMany
+    @ManyToMany(cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
     @JoinTable(
             name = "PER_HOB",
-            joinColumns = @JoinColumn(name = "PERSON_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "HOBBY_ID", referencedColumnName = "ID"))
+            joinColumns = @JoinColumn(name = "PERSON_ID"),
+            inverseJoinColumns = @JoinColumn(name = "HOBBY_ID"))
     private List<Hobby> hobbies;
 
     public Person() {
@@ -58,6 +62,10 @@ public class Person implements Serializable {
         this.fName = fName;
         this.lName = lName;
     }
+
+    public void setA(Address a) {
+        this.a = a;
+    }   
 
     public String getEmail() {
         return email;

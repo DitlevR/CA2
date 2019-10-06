@@ -33,8 +33,8 @@ public class CityInfo implements Serializable {
     public CityInfo() {
     }
 
-    public CityInfo(int id, String zipCode, String city) {
-        this.id = id;
+    public CityInfo(String zipCode, String city) {
+//        this.id = id;
         this.zipCode = zipCode;
         this.city = city;
     }
