@@ -41,6 +41,10 @@ public class Phone implements Serializable {
         this.description = description;
     }
 
+    public void setP(Person p) {
+        this.p = p;
+    }
+
     public String getNumber() {
         return number;
     }
