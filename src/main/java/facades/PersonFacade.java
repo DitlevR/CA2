@@ -1,6 +1,7 @@
 package facades;
 
 //import entities.RenameMe;
+import interfaces.PersonInterface;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,7 +11,7 @@ import javax.persistence.Persistence;
  *
  * Rename Class to a relevant name Add add relevant facade methods
  */
-public class PersonFacade {
+public class PersonFacade implements PersonInterface{
 
     private static PersonFacade instance;
     private static EntityManagerFactory emf;
@@ -36,16 +37,6 @@ public class PersonFacade {
         return emf.createEntityManager();
     }
     
-    //TODO Remove/Change this before use
-    public long getRenameMeCount(){
-        EntityManager em = emf.createEntityManager();
-        try{
-            long renameMeCount = (long)em.createQuery("SELECT COUNT(r) FROM RenameMe r").getSingleResult();
-            return renameMeCount;
-        }finally{  
-            em.close();
-        }
-        
-    }
+    
 
 }

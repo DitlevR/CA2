@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import entities.Address;
+import entities.Hobby;
 import entities.Person;
+import entities.Phone;
 import errorhandling.MissingInputException;
 import errorhandling.PersonNotFoundException;
 import java.util.List;
@@ -25,6 +28,15 @@ public interface PersonInterface {
             throws PersonNotFoundException;
     
     public List<Person> getAllPersons();
+    
+    public List<Phone> getPhoneNumberFromID(int id);
+    
+    public List<Hobby> getHobbiesFromID(int id);
+    
+    public Address getAddressFromID(int id);
+    
+    
+    
     
     
     
