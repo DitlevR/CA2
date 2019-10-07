@@ -71,30 +71,29 @@ function showAPIDescription() {
             '<td></td>' +
             '</tr>' +
             '<tr>  ' +
-    '<td>Get</td>' +
-    '<td>/api/allPersonsCity/{city}</td>' +
-    '<td></td>' +
-    '<td>[person, person....]</td>' +
-    '<td></td>' +
-'</tr>' +
+            '<td>Get</td>' +
+            '<td>/api/allPersonsCity/{city}</td>' +
+            '<td></td>' +
+            '<td>[person, person....]</td>' +
+            '<td></td>' +
+            '</tr>' +
             '<tr>  ' +
-    '<td>Get</td>' +
-    '<td>/api/countofPeopleHobby/{hoppy}</td>' +
-    '<td></td>' +
-    '<td>int</td>' +
-    '<td></td>' +
-'</tr>' +
+            '<td>Get</td>' +
+            '<td>/api/countofPeopleHobby/{hoppy}</td>' +
+            '<td></td>' +
+            '<td>int</td>' +
+            '<td></td>' +
+            '</tr>' +
             '<tr>  ' +
-    '<td>Get</td>' +
-    '<td>/api/allZip/</td>' +
-    '<td></td>' +
-    '<td>[zip, zip, ...]</td>' +
-    '<td></td>' +
-'</tr>' +
-
+            '<td>Get</td>' +
+            '<td>/api/allZip/</td>' +
+            '<td></td>' +
+            '<td>[zip, zip, ...]</td>' +
+            '<td></td>' +
+            '</tr>' +
             '</tbody>' +
             '</table>' +
-    '</div>';
+            '</div>';
 
 }
 ;
