@@ -1,4 +1,5 @@
 document.getElementById("getSCRUM").addEventListener("click", showSprints);
+document.getElementById("getAPIDescription").addEventListener("click", showAPIDescription);
 
 
 function showSprints() {
@@ -9,7 +10,6 @@ function showSprints() {
             "<li>The SCRUM plan for the three mini-sprints must be available as a page on your deployed project. This can either be a copy of our suggestion below, or Sprint-1 as given below and your own plan for the remaining sprints if your “product owner” agrees (red students).</li>" +
             "<li>The CI-pipeline must be setup</li>" +
             "<li>Some of the Entity Classes and the Facade(s) must be ready with supplementing tests</li></ul>" +
-            
             '</div><div class="container"><h5>Sprint two (Tuesday 8/10 - Wednesday 9/10):</h5>' +
             "<ul><li>Most of the Entity Classes should be ready</li>" +
             "<li>Sample data should be available in the dev-database</li>" +
@@ -28,3 +28,74 @@ function showSprints() {
 
 }
 ;
+
+function showAPIDescription() {
+    document.getElementById("root").innerHTML =
+            '<div class="container">' +
+            '<br/>' +
+            '<table class="table table-striped">' +
+            '<thead>' +
+            '<tr>' +
+            '<th scope="col">Method</th>' +
+            '<th scope="col">URL</th>' +
+            '<th scope="col">Request Body (JSON)</th>' +
+            '<th scope="col">Response (JSON)</th>' +
+            '<th scope="col">Error (e)</th>' +
+            '</tr>' +
+            '</thead>' +
+            '<tbody>' +
+            '<tr>  ' +
+            '<td>Get</td>' +
+            '<td>/api/personInfo/{phone}</td>' +
+            '<td></td>' +
+            '<td>person</td>' +
+            '<td></td>' +
+            '</tr>' +
+            '<tr>  ' +
+            '<td>Post</td>' +
+            '<td>/api/addPerson/</td>' +
+            '<td><ul>' +
+            '<li>Person: Name</li>' +
+            '<li>Person: Hobby</li>' +
+            '<li>Person: Phone</li>' +
+            '<li>Person: City</li>' +
+            '</ul></td>' +
+            '<td></td>' +
+            '<td></td>' +
+            '</tr>' +
+            '<tr>  ' +
+            '<td>Get</td>' +
+            '<td>/api/allPersonsHobby/{hobby}</td>' +
+            '<td></td>' +
+            '<td>[person, person....]</td>' +
+            '<td></td>' +
+            '</tr>' +
+            '<tr>  ' +
+    '<td>Get</td>' +
+    '<td>/api/allPersonsCity/{city}</td>' +
+    '<td></td>' +
+    '<td>[person, person....]</td>' +
+    '<td></td>' +
+'</tr>' +
+            '<tr>  ' +
+    '<td>Get</td>' +
+    '<td>/api/countofPeopleHobby/{hoppy}</td>' +
+    '<td></td>' +
+    '<td>int</td>' +
+    '<td></td>' +
+'</tr>' +
+            '<tr>  ' +
+    '<td>Get</td>' +
+    '<td>/api/allZip/</td>' +
+    '<td></td>' +
+    '<td>[zip, zip, ...]</td>' +
+    '<td></td>' +
+'</tr>' +
+
+            '</tbody>' +
+            '</table>' +
+    '</div>';
+
+}
+;
+
