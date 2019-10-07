@@ -79,6 +79,19 @@ public class NewMain {
         Address a7 = new Address("Bomgade", "Ligger i Japan");
         Address a8 = new Address("Okostræde", "Ligger i København");
 
+        ph1.setP(p1);
+        ph2.setP(p1);
+        ph3.setP(p2);
+        ph4.setP(p2);
+        ph5.setP(p3);
+        ph6.setP(p3);
+        ph7.setP(p4);
+        ph8.setP(p4);
+        ph9.setP(p5);
+        ph10.setP(p5);
+        ph11.setP(p6);
+        ph12.setP(p6);
+        
         p1.setA(a1);
         p2.setA(a2);
         p3.setA(a3);
@@ -92,18 +105,18 @@ public class NewMain {
         p11.setA(a3);
         p12.setA(a4);
 
-        ph1.setP(p1);
-        ph2.setP(p4);
-        ph3.setP(p1);
-        ph4.setP(p2);
-        ph5.setP(p1);
-        ph6.setP(p2);
-        ph7.setP(p1);
-        ph8.setP(p3);
-        ph9.setP(p4);
-        ph10.setP(p1);
-        ph11.setP(p2);
-        ph12.setP(p2);
+//        ph1.setP(p1);
+//        ph2.setP(p2);
+//        ph3.setP(p2);
+//        ph4.setP(p3);
+//        ph5.setP(p3);
+//        ph6.setP(p3);
+//        ph7.setP(p4);
+//        ph8.setP(p4);
+//        ph9.setP(p4);
+//        ph10.setP(p4);
+//        ph11.setP(p5);
+//        ph12.setP(p5);
 
         a1.setCi(ci1);
         a2.setCi(ci2);
