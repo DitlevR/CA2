@@ -6,6 +6,7 @@
 package interfaces;
 
 import entities.Address;
+import entities.CityInfo;
 import entities.Hobby;
 import entities.Person;
 import entities.Phone;
@@ -15,25 +16,25 @@ import java.util.List;
 
 public interface PersonInterface {
 
-    public Person getPerson(int id)
-            throws PersonNotFoundException;
-
-    public List<Person> getPersonsWithName(String name)
-            throws PersonNotFoundException;
+    public Address getAddresFromPhone(String phone);
     
-    public Person addPerson(String email, String fname, String lname)
-            throws MissingInputException;
+    public List<Hobby> getHobbiesFromPhone(String phone);
     
-    public Person editPerson(Person p)
-            throws PersonNotFoundException;
+    public List<Person> getPersonsWithHobby(String hobby);
     
-    public List<Person> getAllPersons();
+    public List<Person> getAllPersonWithZipcode(String zip);
     
-    public List<Phone> getPhoneNumberFromID(int id);
+    public Integer countPersonsWithHobby(String hobby);
     
-    public List<Hobby> getHobbiesFromID(int id);
+    public List<CityInfo> getAllZipcodes();
     
-    public Address getAddressFromID(int id);
+    public Person editPerson(Person p) throws PersonNotFoundException;
+    
+    public Person deletePerson(int id) throws PersonNotFoundException;
+    
+    public Person addPerson(String email, String fname, String lname);
+    
+    
     
     
     

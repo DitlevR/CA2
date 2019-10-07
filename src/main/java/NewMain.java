@@ -25,10 +25,10 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(
-            "pu",
-            "jdbc:mysql://localhost:3307/CA2",
-            "dev",
-            "ax2",
+                "pu",
+                "jdbc:mysql://localhost:3307/CA2",
+                "dev",
+                "ax2",
             EMF_Creator.Strategy.DROP_AND_CREATE); //DROP_AND_CREATE
 
     public static void main(String[] args) {
