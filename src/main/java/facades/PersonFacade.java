@@ -65,16 +65,24 @@ public class PersonFacade implements PersonInterface {
 
     @Override
     public List<Hobby> getHobbiesFromPhone(String phone) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin(); //"select h from Hobby h JOIN FETCH h.persons p WHERE h.name = :name"
+            List<Hobby> hobbiesFromPhone = em.createQuery("select distinct h from Hobby h JOIN FETCH h.persons p JOIN FETCH p.phones ph WHERE ph.number = :number").setParameter("number", phone).getResultList();
+            return hobbiesFromPhone;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public List<Person> getPersonsWithHobby(String hobby) {
         EntityManager em = emf.createEntityManager();
-        
+
         try {
             em.getTransaction().begin(); //"select h from Hobby h JOIN FETCH h.persons p WHERE h.name = :name"
-            List<Person> allPersonWithHobby = em.createQuery("select p from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter("name", hobby).getResultList();            
+            List<Person> allPersonWithHobby = em.createQuery("select p from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter("name", hobby).getResultList();
             return allPersonWithHobby;
         } finally {
             em.close();

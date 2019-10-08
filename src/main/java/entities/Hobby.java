@@ -70,7 +70,7 @@ public class Hobby implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Hobby[ id=" + id + " ]";
+        return "entities.Hobby[ id=" + id + " Name=" + name + " ]";
     }
     
 }
