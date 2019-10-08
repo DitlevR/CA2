@@ -44,15 +44,12 @@ public class Person implements Serializable {
     @JoinColumn(name = "ADDRESS_ID")
     private Address a;
 
-    @ManyToMany(cascade = {
-        CascadeType.PERSIST,
-        CascadeType.MERGE
-    })
+    @ManyToMany
     @JoinTable(
             name = "PER_HOB",
             joinColumns = @JoinColumn(name = "PERSON_ID"),
             inverseJoinColumns = @JoinColumn(name = "HOBBY_ID"))
-    private List<Hobby> hobbies;
+    private List<Hobby> hobbies = new ArrayList();
 
     public Person() {
     }
@@ -61,6 +58,11 @@ public class Person implements Serializable {
         this.email = email;
         this.fName = fName;
         this.lName = lName;
+    }
+
+    public void setHobby(Hobby h) {
+        hobbies.add(h);
+        h.getPersons().add(this);
     }
 
     public void setA(Address a) {

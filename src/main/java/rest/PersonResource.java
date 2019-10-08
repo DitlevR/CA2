@@ -20,28 +20,54 @@ import javax.ws.rs.core.MediaType;
 public class PersonResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(
-                "pu",
-                "jdbc:mysql://localhost:3307/CA2",
-                "dev",
-                "ax2",
-                EMF_Creator.Strategy.CREATE);
-    private static final PersonFacade FACADE =  PersonFacade.getFacadeExample(EMF);
+            "pu",
+            "jdbc:mysql://localhost:3307/CA2",
+            "dev",
+            "ax2",
+            EMF_Creator.Strategy.CREATE);
+    private static final PersonFacade FACADE = PersonFacade.getFacadeExample(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-            
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String demo() {
-        return "{\"msg\":\"Hello World\"}";
+    public String getperson() {
+        return "{\"msg\":\"Hello form person person\"}";
     }
-    @Path("count")
+
+    @Path("/allPersonsHobby")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getRenameMeCount() {
-        
+    public String allPersonsHobby() {
+
         //System.out.println("--------------->"+count);
-        return "{\"count\":"+"}";  //Done manually so no need for a DTO
+        return "{\"msg\":\"Hello form person person hobby\"}";
     }
 
+    @Path("/allPersonsCity")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String allPersonsCity() {
 
- 
+        //System.out.println("--------------->"+count);
+        return "{\"msg\":\"Hello form person person city\"}";
+    }
+
+    @Path("/countofPeopleHobby")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String countofPeopleHobby() {
+
+        //System.out.println("--------------->"+count);
+        return "{\"msg\":\"Hello form person person hobby count\"}";
+    }
+
+    @Path("/allZip")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String allZip() {
+
+        //System.out.println("--------------->"+count);
+        return "{\"msg\":\"Hello form all zip codes\"}";
+    }
+
 }

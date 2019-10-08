@@ -3,7 +3,7 @@ package facades;
 //import entities.RenameMe;
 import dto.PersonDTO;
 import entities.Address;
-import entities.CityInfo;
+//import entities.CityInfo;
 import entities.Hobby;
 import entities.Person;
 import errorhandling.MissingInputException;
@@ -61,36 +61,41 @@ public class PersonFacade implements PersonInterface{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
+    //virker ikke helt endnu
     @Override
     public List<Person> getAllPersonWithZipcode(String zip) {
          EntityManager em = emf.createEntityManager();
          try {
              em.getTransaction().begin();
-             List<Person> personWithZip = em.createQuery("Select p from Person p JOIN p.Address a where a.id = p.id");
+             List<Person> personWithZip = em.createQuery("Select p from Person p JOIN p.address_id a").getResultList();
              em.getTransaction().commit();
              return personWithZip;
+         } finally {
+             em.close();
          }
     }
 
+    //skal lige konfigureres i forhold til hobby listen
     @Override
     public Integer countPersonsWithHobby(String hobby) {
          EntityManager em = emf.createEntityManager();
          try {
              em.getTransaction().begin();
-             int count = em.createQuery("select COUNT(p) from ")
-             
+             int count = (Integer)em.createQuery("select COUNT(p) from").getSingleResult();
+             return count;
          } finally {
              em.close();
          }
     }
 
     @Override
-    public List<CityInfo> getAllZipcodes() {
+    public List<Address> getAllZipcodes() {
         EntityManager em = emf.createEntityManager();
         
         try {
           em.getTransaction().begin();
-          List<CityInfo> allCities = em.createQuery("Select c from Cityinfo c", CityInfo.class).getResultList();
+          List<Address> allCities = em.createQuery("Select a from Address a", Address.class).getResultList();
           em.getTransaction().commit();
           return allCities;
         } finally {

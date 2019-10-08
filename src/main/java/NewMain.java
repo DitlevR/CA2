@@ -1,13 +1,19 @@
 
 import entities.Address;
-import entities.CityInfo;
+//import entities.CityInfo;
 import entities.Hobby;
 import entities.Person;
 import entities.Phone;
 import facades.PersonFacade;
+import java.util.List;
+import java.util.stream.DoubleStream;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.servlet.jsp.PageContext;
 import utils.EMF_Creator;
 
 /*
@@ -47,6 +53,7 @@ public class NewMain {
         Person p10 = new Person("kolibri@outlook.com", "Anne", "Odinsen");
         Person p11 = new Person("mumle@outlook.com", "Ibensen", "Asgersen");
         Person p12 = new Person("lars@hotmail.com", "Benny", "Baldersen");
+        Person p13 = new Person("hjemlos@google.com", "Hjemlos", "Vandrer");
 
         Phone ph1 = new Phone("12345678", "Til alarmcentralen");
         Phone ph2 = new Phone("99999999", "Til himmelen");
@@ -66,18 +73,17 @@ public class NewMain {
         Hobby h3 = new Hobby("Tegning", "man tegner");
         Hobby h4 = new Hobby("Sang", "man synger");
 
-        CityInfo ci1 = new CityInfo("1234", "Brovst");
-        CityInfo ci2 = new CityInfo("4321", "Aabenraa");
-        CityInfo ci3 = new CityInfo("87654", "Allerød");
-
-        Address a1 = new Address("Parkvej", "Der ligger en mosei området");
-        Address a2 = new Address("Jagtvej", "ungdomshuset lå engang her");
-        Address a3 = new Address("Kongevejen", "Går over Geels bakken");
-        Address a4 = new Address("Nørrebrogade", "Ligger i København");
-        Address a5 = new Address("Holstensvej", "Ligger ingensteder");
-        Address a6 = new Address("Nordvej", "Ligger ved Nordpolen");
-        Address a7 = new Address("Bomgade", "Ligger i Japan");
-        Address a8 = new Address("Okostræde", "Ligger i København");
+//        CityInfo ci1 = new CityInfo("1234", "Brovst");
+//        CityInfo ci2 = new CityInfo("4321", "Aabenraa");
+//        CityInfo ci3 = new CityInfo("87654", "Allerød");
+        Address a1 = new Address("Parkvej", "Der ligger en mose i området", "1234", "Brovst");
+        Address a2 = new Address("Jagtvej", "ungdomshuset lå engang her", "1234", "Brovst");
+        Address a3 = new Address("Kongevejen", "Går over Geels bakken", "2830", "Lyngby");
+        Address a4 = new Address("Nørrebrogade", "Her ligger 3 spa", "4600", "København");
+        Address a5 = new Address("Holstensvej", "Meget fin", "0001", "Verdens ende");
+        Address a6 = new Address("Nordvej", "Dette sted er koldt", "1000", "Højt oppe");
+        Address a7 = new Address("Bomgade", "Udkig til Japan", "2830", "Virum");
+        Address a8 = new Address("Okostræde", "Frej helligdom i nærheden", "7777", "Anholt");
 
         ph1.setP(p1);
         ph2.setP(p1);
@@ -91,7 +97,7 @@ public class NewMain {
         ph10.setP(p5);
         ph11.setP(p6);
         ph12.setP(p6);
-        
+
         p1.setA(a1);
         p2.setA(a2);
         p3.setA(a3);
@@ -105,35 +111,42 @@ public class NewMain {
         p11.setA(a3);
         p12.setA(a4);
 
-//        ph1.setP(p1);
-//        ph2.setP(p2);
-//        ph3.setP(p2);
-//        ph4.setP(p3);
-//        ph5.setP(p3);
-//        ph6.setP(p3);
-//        ph7.setP(p4);
-//        ph8.setP(p4);
-//        ph9.setP(p4);
-//        ph10.setP(p4);
-//        ph11.setP(p5);
-//        ph12.setP(p5);
+        p1.setHobby(h1);
+        p2.setHobby(h1);
+        p1.setHobby(h2);
+        p3.setHobby(h3);
+        p3.setHobby(h2);
+        p4.setHobby(h4);
+        p5.setHobby(h4);
+        p6.setHobby(h1);
+        p7.setHobby(h1);
+        p8.setHobby(h2);
+        p9.setHobby(h3);
+        p10.setHobby(h2);
+        p12.setHobby(h4);
+        p13.setHobby(h4);
+        p7.setHobby(h2);
+        p8.setHobby(h1);
+        p10.setHobby(h4);
+        p9.setHobby(h2);
+        p11.setHobby(h2);
+        p8.setHobby(h4);
+        p1.setHobby(h4);
 
-        a1.setCi(ci1);
-        a2.setCi(ci2);
-        a3.setCi(ci3);
-        a4.setCi(ci1);
-        a5.setCi(ci2);
-        a6.setCi(ci3);
-        a7.setCi(ci1);
-        a8.setCi(ci2);
-
+//        a1.setCi(ci1);
+//        a2.setCi(ci2);
+//        a3.setCi(ci3);
+//        a4.setCi(ci1);
+//        a5.setCi(ci2);
+//        a6.setCi(ci3);
+//        a7.setCi(ci1);
+//        a8.setCi(ci2);
         try {
             em.getTransaction().begin();
 
-            em.persist(ci1);
-            em.persist(ci2);
-            em.persist(ci3);
-
+//            em.persist(ci1);
+//            em.persist(ci2);
+//            em.persist(ci3);
             em.persist(a1);
             em.persist(a2);
             em.persist(a3);
@@ -155,6 +168,7 @@ public class NewMain {
             em.persist(p10);
             em.persist(p12);
             em.persist(p11);
+            em.persist(p13);
 
             em.persist(h1);
             em.persist(h2);
@@ -178,6 +192,6 @@ public class NewMain {
         } finally {
             em.close();
         }
-        }
-
     }
+
+}
