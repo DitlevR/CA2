@@ -43,7 +43,8 @@ public class NewMain {
         Persistence.generateSchema("pu", null);
         EntityManager em = EMF.createEntityManager();
         
-        System.out.println(FACADE.getAddresFromPhone("12345678"));
+//        System.out.println(FACADE.getAddresFromPhone("12345678"));
+        System.out.println(FACADE.getPersonsWithHobby("Svømning"));
 
 //        try {
 //            em.getTransaction().begin();

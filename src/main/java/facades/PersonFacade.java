@@ -46,6 +46,10 @@ public class PersonFacade implements PersonInterface {
         return emf.createEntityManager();
     }
 
+    /**
+     * EntityManager em = emf.createEntityManager(); try { } finally {
+     * em.close(); }
+     */
     @Override
     public List<Address> getAddresFromPhone(String phone) {
         EntityManager em = emf.createEntityManager();
@@ -66,7 +70,15 @@ public class PersonFacade implements PersonInterface {
 
     @Override
     public List<Person> getPersonsWithHobby(String hobby) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        
+        try {
+            em.getTransaction().begin(); //"select h from Hobby h JOIN FETCH h.persons p WHERE h.name = :name"
+            List<Person> allPersonWithHobby = em.createQuery("select p from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter("name", hobby).getResultList();            
+            return allPersonWithHobby;
+        } finally {
+            em.close();
+        }
     }
 
     //virker ikke helt endnu
@@ -155,11 +167,11 @@ public class PersonFacade implements PersonInterface {
         Person person = new Person();
         int id = 0;
         try {
-        person.setfName(fname);
-        person.setlName(lname);
-        person.getAddress().setCity(city);
-        person.getAddress().setZipCode(zip);
-        person.getAddress().setStreet(street);
+            person.setfName(fname);
+            person.setlName(lname);
+            person.getAddress().setCity(city);
+            person.getAddress().setZipCode(zip);
+            person.getAddress().setStreet(street);
 
         } finally {
             em.close();
