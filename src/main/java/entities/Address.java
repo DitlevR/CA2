@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,7 +36,7 @@ public class Address implements Serializable {
     private String city;
     
     @OneToMany(mappedBy = "a")
-    private List<Person> persons;
+    private List<Person> persons = new ArrayList();
     
 //    @ManyToOne(fetch=FetchType.LAZY)
 //    @JoinColumn(name="CITYINFO_ID") //navn på kolonne som indeholder foreign key
@@ -56,6 +57,10 @@ public class Address implements Serializable {
 //        this.ci = ci;
 //    }
 
+    public List<Person> getPersons() {
+        return persons;
+    }
+    
     public String getZipCode() {
         return zipCode;
     }
