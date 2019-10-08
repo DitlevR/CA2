@@ -63,6 +63,14 @@ public class Person implements Serializable {
         this.lName = lName;
     }
 
+    public void setHobbies(List<Hobby> hobbies) {
+        this.hobbies = hobbies;
+    }
+    
+    public void setHobbies(Hobby h){
+        hobbies.add(h);
+    }
+
     public void setA(Address a) {
         this.a = a;
     }   

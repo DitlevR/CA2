@@ -47,6 +47,7 @@ public class NewMain {
         Person p10 = new Person("kolibri@outlook.com", "Anne", "Odinsen");
         Person p11 = new Person("mumle@outlook.com", "Ibensen", "Asgersen");
         Person p12 = new Person("lars@hotmail.com", "Benny", "Baldersen");
+        Person p13 = new Person("hjemlos@google.com", "Hjemlos", "Vandrer");
 
         Phone ph1 = new Phone("12345678", "Til alarmcentralen");
         Phone ph2 = new Phone("99999999", "Til himmelen");
@@ -105,19 +106,6 @@ public class NewMain {
         p11.setA(a3);
         p12.setA(a4);
 
-//        ph1.setP(p1);
-//        ph2.setP(p2);
-//        ph3.setP(p2);
-//        ph4.setP(p3);
-//        ph5.setP(p3);
-//        ph6.setP(p3);
-//        ph7.setP(p4);
-//        ph8.setP(p4);
-//        ph9.setP(p4);
-//        ph10.setP(p4);
-//        ph11.setP(p5);
-//        ph12.setP(p5);
-
         a1.setCi(ci1);
         a2.setCi(ci2);
         a3.setCi(ci3);
@@ -155,6 +143,7 @@ public class NewMain {
             em.persist(p10);
             em.persist(p12);
             em.persist(p11);
+            em.persist(p13);
 
             em.persist(h1);
             em.persist(h2);
