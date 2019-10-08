@@ -68,7 +68,7 @@ public class Person implements Serializable {
     public void setA(Address a) {
         this.a = a;
         a.getPersons().add(this);
-    }   
+    }
 
     public String getEmail() {
         return email;
@@ -107,4 +107,16 @@ public class Person implements Serializable {
         return "entities.Person[ id=" + id + " ]";
     }
 
+    public Address getAddress() {
+        return a;
     }
+    
+    public List<Phone> getPhone() {
+        return phones;
+    }
+    
+    public List<Hobby> getHobbies() {
+        return hobbies;
+    }
+
+}

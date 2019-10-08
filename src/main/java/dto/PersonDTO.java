@@ -12,22 +12,33 @@ import entities.Person;
  * @author Rumle
  */
 public class PersonDTO {
-    private String email;
+    private int id;
     private String fName;
     private String lName;
+    private String street;
+    private String city;
+    private String zip;
+    private String phone;
+    private String hobbies;
+
+    public PersonDTO(String fName, String lName, String street, String city, String zip, String phone, String hobbies) {
+        this.fName = fName;
+        this.lName = lName;
+        this.street = street;
+        this.city = city;
+        this.zip = zip;
+        this.phone = phone;
+        this.hobbies = hobbies;
+    }
+
     
-    public PersonDTO(Person p) {
-        this.email = p.getEmail();
-        this.fName = p.getfName();
-        this.lName = p.getlName();
+
+    public int getId() {
+        return id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getfName() {
@@ -46,11 +57,50 @@ public class PersonDTO {
         this.lName = lName;
     }
 
-    @Override
-    public String toString() {
-        return "PersonDTO{" + "email=" + email + ", fName=" + fName + ", lName=" + lName + '}';
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
     }
     
     
-    
 }
+    
+
+    
+    
+    
