@@ -67,6 +67,7 @@ public class Person implements Serializable {
 
     public void setA(Address a) {
         this.a = a;
+        a.getPersons().add(this);
     }   
 
     public String getEmail() {
