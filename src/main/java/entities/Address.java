@@ -31,25 +31,45 @@ public class Address implements Serializable {
     private int id;
     private String street;
     private String additionalInfo;
+    private String zipCode;
+    private String city;
     
     @OneToMany(mappedBy = "a")
     private List<Person> persons;
     
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="CITYINFO_ID") //navn på kolonne som indeholder foreign key
-    private CityInfo ci;
+//    @ManyToOne(fetch=FetchType.LAZY)
+//    @JoinColumn(name="CITYINFO_ID") //navn på kolonne som indeholder foreign key
+//    private CityInfo ci;
 
     public Address() {
     }
     
-    public Address(String street, String additionalInfo) {
+    public Address(String street, String additionalInfo, String zipCode, String city) {
         //this.id = id;
         this.street = street;
         this.additionalInfo = additionalInfo;
+        this.zipCode = zipCode;
+        this.city = city;
     }
 
-    public void setCi(CityInfo ci) {
-        this.ci = ci;
+//    public void setCi(CityInfo ci) {
+//        this.ci = ci;
+//    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
     
     public void setStreet(String street) {

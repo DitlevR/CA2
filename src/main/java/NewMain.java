@@ -1,6 +1,6 @@
 
 import entities.Address;
-import entities.CityInfo;
+//import entities.CityInfo;
 import entities.Hobby;
 import entities.Person;
 import entities.Phone;
@@ -67,18 +67,18 @@ public class NewMain {
         Hobby h3 = new Hobby("Tegning", "man tegner");
         Hobby h4 = new Hobby("Sang", "man synger");
 
-        CityInfo ci1 = new CityInfo("1234", "Brovst");
-        CityInfo ci2 = new CityInfo("4321", "Aabenraa");
-        CityInfo ci3 = new CityInfo("87654", "Allerød");
+//        CityInfo ci1 = new CityInfo("1234", "Brovst");
+//        CityInfo ci2 = new CityInfo("4321", "Aabenraa");
+//        CityInfo ci3 = new CityInfo("87654", "Allerød");
 
-        Address a1 = new Address("Parkvej", "Der ligger en mosei området");
-        Address a2 = new Address("Jagtvej", "ungdomshuset lå engang her");
-        Address a3 = new Address("Kongevejen", "Går over Geels bakken");
-        Address a4 = new Address("Nørrebrogade", "Ligger i København");
-        Address a5 = new Address("Holstensvej", "Ligger ingensteder");
-        Address a6 = new Address("Nordvej", "Ligger ved Nordpolen");
-        Address a7 = new Address("Bomgade", "Ligger i Japan");
-        Address a8 = new Address("Okostræde", "Ligger i København");
+        Address a1 = new Address("Parkvej", "Der ligger en mose i området", "1234", "Brovst");
+        Address a2 = new Address("Jagtvej", "ungdomshuset lå engang her", "1234", "Brovst");
+        Address a3 = new Address("Kongevejen", "Går over Geels bakken", "2830", "Lyngby");
+        Address a4 = new Address("Nørrebrogade", "Her ligger 3 spa", "4600", "København");
+        Address a5 = new Address("Holstensvej", "Meget fin", "0001", "Verdens ende");
+        Address a6 = new Address("Nordvej", "Dette sted er koldt", "1000", "Højt oppe");
+        Address a7 = new Address("Bomgade", "Udkig til Japan", "2830", "Virum");
+        Address a8 = new Address("Okostræde", "Frej helligdom i nærheden", "7777", "Anholt");
 
         ph1.setP(p1);
         ph2.setP(p1);
@@ -128,21 +128,21 @@ public class NewMain {
         p8.setHobby(h4);
         p1.setHobby(h4);
 
-        a1.setCi(ci1);
-        a2.setCi(ci2);
-        a3.setCi(ci3);
-        a4.setCi(ci1);
-        a5.setCi(ci2);
-        a6.setCi(ci3);
-        a7.setCi(ci1);
-        a8.setCi(ci2);
+//        a1.setCi(ci1);
+//        a2.setCi(ci2);
+//        a3.setCi(ci3);
+//        a4.setCi(ci1);
+//        a5.setCi(ci2);
+//        a6.setCi(ci3);
+//        a7.setCi(ci1);
+//        a8.setCi(ci2);
 
         try {
             em.getTransaction().begin();
 
-            em.persist(ci1);
-            em.persist(ci2);
-            em.persist(ci3);
+//            em.persist(ci1);
+//            em.persist(ci2);
+//            em.persist(ci3);
 
             em.persist(a1);
             em.persist(a2);

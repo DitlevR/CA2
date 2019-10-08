@@ -2,7 +2,7 @@ package facades;
 
 //import entities.RenameMe;
 import entities.Address;
-import entities.CityInfo;
+//import entities.CityInfo;
 import entities.Hobby;
 import entities.Person;
 import errorhandling.PersonNotFoundException;
@@ -67,10 +67,10 @@ public class PersonFacade implements PersonInterface{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public List<CityInfo> getAllZipcodes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    @Override
+//    public List<CityInfo> getAllZipcodes() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     @Override
     public Person editPerson(Person p) throws PersonNotFoundException {

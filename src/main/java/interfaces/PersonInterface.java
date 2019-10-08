@@ -6,7 +6,7 @@
 package interfaces;
 
 import entities.Address;
-import entities.CityInfo;
+//import entities.CityInfo;
 import entities.Hobby;
 import entities.Person;
 import entities.Phone;
@@ -26,7 +26,7 @@ public interface PersonInterface {
     
     public Integer countPersonsWithHobby(String hobby);
     
-    public List<CityInfo> getAllZipcodes();
+    //public List<CityInfo> getAllZipcodes();
     
     public Person editPerson(Person p) throws PersonNotFoundException;
     
