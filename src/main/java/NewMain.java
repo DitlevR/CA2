@@ -105,6 +105,28 @@ public class NewMain {
         p10.setA(a2);
         p11.setA(a3);
         p12.setA(a4);
+        
+        p1.setHobby(h1);
+        p2.setHobby(h1);
+        p1.setHobby(h2);
+        p3.setHobby(h3);
+        p3.setHobby(h2);
+        p4.setHobby(h4);
+        p5.setHobby(h4);
+        p6.setHobby(h1);
+        p7.setHobby(h1);
+        p8.setHobby(h2);
+        p9.setHobby(h3);
+        p10.setHobby(h2);
+        p12.setHobby(h4);
+        p13.setHobby(h4);
+        p7.setHobby(h2);
+        p8.setHobby(h1);
+        p10.setHobby(h4);
+        p9.setHobby(h2);
+        p11.setHobby(h2);
+        p8.setHobby(h4);
+        p1.setHobby(h4);
 
         a1.setCi(ci1);
         a2.setCi(ci2);
