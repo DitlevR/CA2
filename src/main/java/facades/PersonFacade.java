@@ -140,14 +140,20 @@ public class PersonFacade implements PersonInterface{
     }
 
     @Override
-    public Person addPerson(String email, String fname, String lname) throws MissingInputException {
+    public Person addPerson(String fname, String lname, String street, String city, String zip) throws MissingInputException {
         EntityManager em = emf.createEntityManager();
-        if(email == null || fname == null || lname == null 
-                || email == "" || fname == "" || lname == "") {
+        if(fname == null || lname == null 
+                || fname == "" || lname == "") {
             throw new MissingInputException("Missing input");
         }
-        Person person = new Person(email, fname, lname);
+        Person person = new Person();
         int id = 0;
+        person.setfName(fname);
+        person.setlName(lname);
+        person.getAddress().setCity(city);
+        person.getAddress().setZipCode(zip);
+        person.getAddress().setStreet(street);
+        
         try{
             em.getTransaction().begin();
             em.persist(person);
