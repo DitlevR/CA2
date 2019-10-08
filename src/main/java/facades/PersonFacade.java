@@ -52,7 +52,7 @@ public class PersonFacade implements PersonInterface {
 
         try {
             em.getTransaction().begin();
-            List<Address> allAddressFromPhone = em.createQuery("select ph from Phone ph JOIN FETCH ph.person p JOIN FETCH p.address a WHERE ph.number = :number").setParameter("number", phone).getResultList();
+            List<Address> allAddressFromPhone = em.createQuery("select ph from Phone ph JOIN FETCH ph.p p JOIN FETCH p.a a WHERE ph.number = :number").setParameter("number", phone).getResultList();
             return allAddressFromPhone;
         } finally {
             em.close();

@@ -42,17 +42,15 @@ public class NewMain {
     public static void main(String[] args) {
         Persistence.generateSchema("pu", null);
         EntityManager em = EMF.createEntityManager();
+        
+        System.out.println(FACADE.getAddresFromPhone("12345678"));
 
-
-        try {
-            em.getTransaction().begin();
-
-
-
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
+//        try {
+//            em.getTransaction().begin();
+//            em.getTransaction().commit();
+//        } finally {
+//            em.close();
+//        }
     }
 
 }
