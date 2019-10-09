@@ -37,22 +37,21 @@ public class PersonResource {
     public String getperson() {
         return "{\"msg\":\"Hello form person person\"}";
     }
-    
-    
+
 //    @GET
 //    @Path("{id}")
 //    @Produces(MediaType.APPLICATION_JSON)
 //    public String getPerson(@PathParam("id") int id) {
 //        return GSON.toJson(new PersonDTO("Hans", "Hansen", "Lyng", "Holte", "2340", "45609675", "tennis"));
 //    }
-    
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     public String savePerson(String person) throws MissingInputException {
         PersonDTO persondto = GSON.fromJson(person, PersonDTO.class);
-        Person added = FACADE.addPerson(persondto.getfName(), persondto.getlName()
-                , persondto.getStreet(), persondto.getCity(), persondto.getZip());
+        Person added = FACADE.addPerson(persondto.getfName(),
+                persondto.getlName(),
+                 persondto.getStreet(), persondto.getCity(), persondto.getZip());
         return GSON.toJson(persondto);
     }
 
@@ -68,17 +67,15 @@ public class PersonResource {
     @Path("/allPersonsCity/{zip}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String allPersonsCity(String zip) {
-
+    public String allPersonsCity(@PathParam("zip") String zip) {
         List allPersonwithZip = FACADE.getAllPersonWithZipcode(zip);
-        
         return GSON.toJson(allPersonwithZip);
     }
 
     @Path("/countofPeopleHobby/{Hobby}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String countofPeopleHobby(String Hobby) {
+    public String countofPeopleHobby(@PathParam("Hobby") String Hobby) {
         int count = FACADE.countPersonsWithHobby(Hobby);
 
         //System.out.println("--------------->"+count);
@@ -91,9 +88,16 @@ public class PersonResource {
     public String allZip() {
 
         List getAll = FACADE.getAllZipcodes();
-        return GSON.toJson(getAll) ;
+        return GSON.toJson(getAll);
     }
-    
-    
+
+    @Path("/getAddresFromPhone/{phone}")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getAddresFromPhone(@PathParam("phone") String phone) {
+
+        List getAll = FACADE.getAddresFromPhone(phone);
+        return GSON.toJson(getAll);
+    }
 
 }

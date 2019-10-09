@@ -46,7 +46,7 @@ public class NewMain {
 //        System.out.println(FACADE.getAddresFromPhone("12345678"));
 //        System.out.println(FACADE.getPersonsWithHobby("Svømning"));
         System.out.println(FACADE.getHobbiesFromPhone("12345678"));
-
+        System.out.println(FACADE.getAddresFromPhone("12345678"));
 //        try {
 //            em.getTransaction().begin();
 //            em.getTransaction().commit();
