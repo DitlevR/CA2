@@ -49,47 +49,74 @@ function showAPIDescription() {
             '<td>/api/personInfo/{phone}</td>' +
             '<td></td>' +
             '<td>person</td>' +
-            '<td></td>' +
+            '<td>(e1) :{ status : 404, "msg": "No personInfo found with that phone" }</td>' +
             '</tr>' +
             '<tr>  ' +
             '<td>Post</td>' +
             '<td>/api/addPerson/</td>' +
             '<td><ul>' +
-            '<li>Person: Name</li>' +
-            '<li>Person: Hobby</li>' +
-            '<li>Person: Phone</li>' +
-            '<li>Person: City</li>' +
+            '<p>"name" : String</p>' +
+            '<p>"street" : String</p>' +
+            '<p>"city" : String</p>' +
+            '<p>"phone" : String</p>' +
+            '<p>"hobbies" : String</p>' +
             '</ul></td>' +
-            '<td></td>' +
-            '<td></td>' +
+            '<td><p>"id" : "Integer"' +
+            '<p>"name" : String</p>' +
+            '<p>"street" : String</p>' +
+            '<p>"city" : String</p>' +
+            '<p>"phone" : String</p>' +
+            '<p>"hobbies" : String</p></td>' +
+            '<td>(e2) :{ status : 400, "msg": "All input fields must be filled" }</td>' +
             '</tr>' +
             '<tr>  ' +
             '<td>Get</td>' +
             '<td>/api/allPersonsHobby/{hobby}</td>' +
             '<td></td>' +
             '<td>[person, person....]</td>' +
-            '<td></td>' +
-            '</tr>' +
+            '<td>:{ status : 404, "msg": "No person with that hobby found" }</td>' +
+            '</tr>                    ' +
             '<tr>  ' +
             '<td>Get</td>' +
             '<td>/api/allPersonsCity/{city}</td>' +
             '<td></td>' +
             '<td>[person, person....]</td>' +
-            '<td></td>' +
+            '<td>(e1) :{ status : 404, "msg": "No person with that city found" }</td>' +
             '</tr>' +
             '<tr>  ' +
             '<td>Get</td>' +
             '<td>/api/countofPeopleHobby/{hoppy}</td>' +
             '<td></td>' +
             '<td>int</td>' +
-            '<td></td>' +
+            '<td>(e1) :{ status : 404, "msg": "No people found with that hobby" }</td>' +
             '</tr>' +
             '<tr>  ' +
             '<td>Get</td>' +
             '<td>/api/allZip/</td>' +
             '<td></td>' +
             '<td>[zip, zip, ...]</td>' +
-            '<td></td>' +
+            '<td>(e1) :{ status : 404, "msg": "No zip found" }</td>' +
+            '</tr>' +
+            '<tr>  ' +
+            '<td>PUT</td>' +
+            '<td>/api/editPerson/{id}</td>' +
+            '<td>' +
+            '<p>"id" : "Integer"' +
+            '<p>"name" : String</p>' +
+            '<p>"street" : String</p>' +
+            '<p>"city" : String</p>' +
+            '<p>"phone" : String</p>' +
+            '<p>"hobbies" : String</p>' +
+            '</td>' +
+            '<td>' +
+            '<p>"id" : "Integer"' +
+            '<p>"name" : String</p>' +
+            '<p>"street" : String</p>' +
+            '<p>"city" : String</p>' +
+            '<p>"phone" : String</p>' +
+            '<p>"hobbies" : String</p>' +
+            '</td>' +
+            '<td>(e1) :{ status : 404, "msg": "No person found" }</td>' +
             '</tr>' +
             '</tbody>' +
             '</table>' +
