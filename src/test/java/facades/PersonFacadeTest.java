@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NamedQuery;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -31,6 +32,8 @@ public class PersonFacadeTest {
     private static Person p1, p2, p3, p4;
     private static List<Person> all = new ArrayList();
     private static List<Address> address = new ArrayList();
+    private static List<Phone> phones = new ArrayList();
+    private static List<Hobby> hobbies = new ArrayList();
 
     public PersonFacadeTest() {
     }
@@ -42,7 +45,7 @@ public class PersonFacadeTest {
                 "jdbc:mysql://localhost:3307/startcode_test",
                 "dev",
                 "ax2",
-                EMF_Creator.Strategy.CREATE);
+                EMF_Creator.Strategy.DROP_AND_CREATE);
         facade = PersonFacade.getFacadeExample(emf);
 
     }
@@ -54,16 +57,17 @@ public class PersonFacadeTest {
         See below for how to use these files. This is our RECOMENDED strategy
      */
     @Disabled
-    @BeforeAll
+//    @BeforeAll
     public static void setUpClassV2() {
         p1 = new Person("Hans@mail.dk", "Hans", "Hansen");
         p2 = new Person("Jens@mail.dk", "Jens", "Jensen");
         p3 = new Person("John@mail.dk", "John", "Johnson");
         p4 = new Person("Anders@mail.dk", "Anders", "Andersen");
-        p1.setId(1);
-        p2.setId(2);
-        p3.setId(3);
-        p4.setId(4);
+
+        Phone ph1 = new Phone("12345678", "Til alarmcentralen");
+        Phone ph2 = new Phone("99999999", "Til himmelen");
+        Phone ph3 = new Phone("77777777", "Til jesus");
+        Phone ph4 = new Phone("88888888", "Til Leasy");
 
         Hobby h1 = new Hobby("Svømning", "man svømmer");
         Hobby h2 = new Hobby("Klatring", "man klatrer");
@@ -75,29 +79,21 @@ public class PersonFacadeTest {
         Address a3 = new Address("Kongevejen", "Går over Geels bakken", "2830", "Lyngby");
         Address a4 = new Address("Nørrebrogade", "Her ligger 3 spa", "4600", "København");
 
-        
-
-        Phone ph1 = new Phone("12345678", "Til alarmcentralen");
-        Phone ph2 = new Phone("99999999", "Til himmelen");
-        Phone ph3 = new Phone("77777777", "Til jesus");
-        Phone ph4 = new Phone("88888888", "Til Leasy");
-
         ph1.setP(p1);
-        ph2.setP(p1);
-        ph3.setP(p2);
-        ph4.setP(p2);
+        ph2.setP(p2);
+        ph3.setP(p3);
+        ph4.setP(p4);
 
-        
-
-        
-       
-        
         p1.setA(a1);
         p2.setA(a2);
         p3.setA(a3);
         p4.setA(a4);
 
-        
+        p1.setHobby(h1);
+        p2.setHobby(h1);
+        p1.setHobby(h2);
+        p3.setHobby(h3);
+        p3.setHobby(h2);
 
         all.add(p1);
         all.add(p2);
@@ -107,8 +103,17 @@ public class PersonFacadeTest {
         address.add(a2);
         address.add(a3);
         address.add(a4);
-        emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.DROP_AND_CREATE);
-        facade = PersonFacade.getFacadeExample(emf);
+        phones.add(ph1);
+        phones.add(ph2);
+        phones.add(ph3);
+        phones.add(ph4);
+        hobbies.add(h1);
+        hobbies.add(h2);
+        hobbies.add(h3);
+        hobbies.add(h4);
+
+//        emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.DROP_AND_CREATE);
+//        facade = PersonFacade.getFacadeExample(emf);
     }
 
     @AfterAll
@@ -119,26 +124,46 @@ public class PersonFacadeTest {
     // Setup the DataBase in a known state BEFORE EACH TEST
     //TODO -- Make sure to change the script below to use YOUR OWN entity class
     @Disabled
-    //@BeforeEach
+//    @BeforeEach
     public void setUp() {
 
         EntityManager em = emf.createEntityManager();
-        
+        emf = EMF_Creator.createEntityManagerFactory(
+                "pu",
+                "jdbc:mysql://localhost:3307/startcode_test",
+                "dev",
+                "ax2",
+                EMF_Creator.Strategy.DROP_AND_CREATE);
 
-       try {
-            
-            
+        try {
+            em.getTransaction().begin();
+
+//            em.createNamedQuery("Phone.deleteAllRows").executeUpdate();
+//            em.createNamedQuery("Hobby.deleteAllRows").executeUpdate();
+//            em.createNamedQuery("Address.deleteAllRows").executeUpdate();
+//            em.createNamedQuery("Person.deleteAllRows").executeUpdate();
             for (Address a : address) {
-                em.getTransaction().begin();
+
                 em.persist(a);
-                em.getTransaction().commit();
+
             }
 
             for (Person p : all) {
-                em.getTransaction().begin();
+
                 em.persist(p);
-                em.getTransaction().commit();
+
             }
+            for (Hobby h : hobbies) {
+
+                em.persist(h);
+
+            }
+            for (Phone p : phones) {
+
+                em.persist(p);
+
+            }
+            em.getTransaction().commit();
 
             System.out.println(all.toString());
 
@@ -147,6 +172,7 @@ public class PersonFacadeTest {
         }
     }
 
+    @Disabled
     @Test
     public void getAddressFromPhoneTest() {
         Assertions.assertNotNull(p1);
@@ -186,9 +212,8 @@ public class PersonFacadeTest {
 //    public void deletePersonDontExistTest() {
 //
 //    }
-    
     @Disabled
-    //@Test
+    @Test
     public void testGetAll() {
         List<Person> all = facade.getAllPersons();
         assertEquals(4, all.size());

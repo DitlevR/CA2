@@ -81,10 +81,7 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public List<Person> getPersonsWithHobby(String hobby) {
-
-               
-
+    public List<Person> getPersonsWithHobby(String hobby) {               
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -103,8 +100,7 @@ public class PersonFacade implements PersonInterface {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            List<Person> personWithZip = em.createQuery("Select p from Person p JOIN p.address_id a").getResultList();
-            em.getTransaction().commit();
+            List<Person> personWithZip = em.createQuery("Select p from Person p JOIN p.a a WHERE a.zipCode = :zip").setParameter("zip", zip).getResultList();
             return personWithZip;
         } finally {
             em.close();
