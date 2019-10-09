@@ -47,8 +47,8 @@ public class NewMain {
 //        System.out.println(FACADE.getPersonsWithHobby("Svømning"));
 
 //        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
-        System.out.println(FACADE.getAllPersonWithZipcode("0001"));
-
+        //System.out.println(FACADE.getAllPersonWithZipcode("0001"));
+        System.out.println(FACADE.getAllZipcodes());
 
 //        try {
 //            em.getTransaction().begin();

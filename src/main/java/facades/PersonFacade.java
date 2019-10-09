@@ -127,6 +127,7 @@ public class PersonFacade implements PersonInterface {
             em.getTransaction().begin();
             List<Address> allCities = em.createQuery("Select a from Address a", Address.class).getResultList();
             em.getTransaction().commit();
+            System.out.println(allCities);
             return allCities;
         } finally {
             em.close();

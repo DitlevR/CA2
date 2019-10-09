@@ -75,29 +75,29 @@ public class PersonResource {
     @Path("/countofPeopleHobby/{Hobby}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String countofPeopleHobby(@PathParam("Hobby") String Hobby) {
+    public int countofPeopleHobby(@PathParam("Hobby") String Hobby) {
         int count = FACADE.countPersonsWithHobby(Hobby);
 
         //System.out.println("--------------->"+count);
-        return GSON.toJson(count);
+        return count;
     }
 
     @Path("/allZip")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String allZip() {
+    public List allZip() {
 
-        List getAll = FACADE.getAllZipcodes();
-        return GSON.toJson(getAll);
+        List allzip = FACADE.getAllZipcodes();
+        return allzip;
     }
 
     @Path("/getAddresFromPhone/{phone}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getAddresFromPhone(@PathParam("phone") String phone) {
+    public List getAddresFromPhone(@PathParam("phone") String phone) {
 
         List getAll = FACADE.getAddresFromPhone(phone);
-        return GSON.toJson(getAll);
+        return getAll;
     }
 
 }
