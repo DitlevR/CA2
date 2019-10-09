@@ -93,11 +93,11 @@ public class PersonResource {
     @Path("/countofPeopleHobby/{Hobby}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String countofPeopleHobby(@PathParam("Hobby") String Hobby) {
+    public int countofPeopleHobby(@PathParam("Hobby") String Hobby) {
         int count = FACADE.countPersonsWithHobby(Hobby);
 
         //System.out.println("--------------->"+count);
-        return GSON.toJson(count);
+        return count;
     }
 
     @Path("/getAddresFromPhone/{phone}")

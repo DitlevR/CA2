@@ -58,9 +58,14 @@ public class NewMain {
 //        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
 
 
+
 //        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
 //        System.out.println(FACADE.getAllPersonWithZipcode("0001"));
 
+
+
+        //System.out.println(FACADE.getAllPersonWithZipcode("0001"));
+        System.out.println(FACADE.getAllZipcodes());
 
 
 //        try {
