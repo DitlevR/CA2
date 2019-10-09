@@ -78,6 +78,9 @@ public class PersonFacade implements PersonInterface {
 
     @Override
     public List<Person> getPersonsWithHobby(String hobby) {
+
+               
+
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -87,6 +90,7 @@ public class PersonFacade implements PersonInterface {
         } finally {
             em.close();
         }
+
     }
 
     //virker ikke helt endnu
@@ -198,5 +202,6 @@ public class PersonFacade implements PersonInterface {
             em.close();
         }
     }
+
 
 }
