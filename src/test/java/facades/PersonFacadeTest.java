@@ -5,6 +5,8 @@ import entities.Hobby;
 import utils.EMF_Creator;
 import entities.Person;
 import entities.Phone;
+import errorhandling.MissingInputException;
+import errorhandling.PersonNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -175,41 +177,53 @@ public class PersonFacadeTest {
         Assertions.assertNotNull(p1);
     }
 
-//    @Test
-//    public void getHobbiesFromPhoneTest() {
-//
-//    }
-//
-//    @Test
-//    public void getPersonsWithHobby() {
-//
-//    }
-//
-//    @Test
-//    public void countPersonWithHobbyTest() {
-//
-//    }
-//
-//    @Test
-//    public void getAllZipcodesTest() {
-//
-//    }
+    @Test
+    public void getHobbiesFromPhoneTest() {
+List<Hobby> all = facade.getHobbiesFromPhone("12345678");
+        assertEquals(2, all.size());
+    }
+
+    @Test
+    public void getPersonsWithHobby() {
+List<Person> withHobby = facade.getPersonsWithHobby("Svømning");
+        assertEquals(4, all.size());
+
+    }
+
+    @Disabled
+    @Test
+    public void countPersonWithHobbyTest() {
+int count = facade.countPersonsWithHobby("Svømning");
+        assertEquals(1, count);
+    }
+
+    @Test
+    public void getAllZipcodesTest() {
+List<Address> all = facade.getAllZipcodes();
+        assertEquals(4, all.size());
+    }
 //
 //    @Test
 //    public void editPersonTest() {
 //
 //    }
 //
-//    @Test
-//    public void testAddPersonWithNoName() {
-//
-//    }
-//
-//    @Test
-//    public void deletePersonDontExistTest() {
-//
-//    }
-    
+    @Test
+    public void testAddPerson() throws MissingInputException {
+        Person person = facade.addPerson("Test", "Test", "Testvej", "TestBy", "1234");
+
+        Assertions.assertNotNull(person);
+
+    }
+
+    @Disabled
+    @Test
+    public void deletePersonDontExistTest() throws PersonNotFoundException {
+        facade.deletePerson(p1.getId());
+        assertEquals(3, facade.getAllPersons().size());
+
+    }
+
     @Test
     public void testGetAll() {
         List<Person> all = facade.getAllPersons();
@@ -219,8 +233,7 @@ public class PersonFacadeTest {
 
     @AfterEach
     public void tearDown() {
-        
-        
+
         emf = EMF_Creator.createEntityManagerFactory(
                 "pu",
                 "jdbc:mysql://localhost:3307/startcode_test",
@@ -234,7 +247,7 @@ public class PersonFacadeTest {
         em.createNamedQuery("Person.deleteAllRows").executeUpdate();
         em.createNamedQuery("Address.deleteAllRows").executeUpdate();
         em.getTransaction().commit();
-        
+
     }
 
 }

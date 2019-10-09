@@ -38,10 +38,10 @@ public class Person implements Serializable {
     private String lName;
     private String email;
 
-    @OneToMany(mappedBy = "p") //hvilken variabel i Phone.java hvert Person object knyttes til
+    @OneToMany(mappedBy = "p", cascade = CascadeType.REMOVE) //hvilken variabel i Phone.java hvert Person object knyttes til
     private List<Phone> phones; //liste som et Person objekt knyttes til
-
-    @ManyToOne//(fetch=FetchType.LAZY)
+//(fetch=FetchType.LAZY)
+    @ManyToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "ADDRESS_ID")
     private Address a;
 
@@ -68,7 +68,7 @@ public class Person implements Serializable {
 
     public void setA(Address a) {
         this.a = a;
-        a.getPersons().add(this);
+        //a.getPersons().add(this);
     }
 
     public String getEmail() {

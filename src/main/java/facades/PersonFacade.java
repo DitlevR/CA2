@@ -6,6 +6,7 @@ import entities.Address;
 //import entities.CityInfo;
 import entities.Hobby;
 import entities.Person;
+import entities.Phone;
 import errorhandling.MissingInputException;
 import errorhandling.PersonNotFoundException;
 import interfaces.PersonInterface;
@@ -49,6 +50,8 @@ public class PersonFacade implements PersonInterface {
     /**
      * EntityManager em = emf.createEntityManager(); try { } finally {
      * em.close(); }
+     *
+     * @param phone
      */
     @Override
     public List<Address> getAddresFromPhone(String phone) {
@@ -56,7 +59,10 @@ public class PersonFacade implements PersonInterface {
 
         try {
             em.getTransaction().begin();
-            List<Address> allAddressFromPhone = em.createQuery("select ph from Phone ph JOIN FETCH ph.p p JOIN FETCH p.a a WHERE ph.number = :number").setParameter("number", phone).getResultList();
+            List<Address> allAddressFromPhone = em.createQuery("select ph from "
+                    + "Phone ph JOIN FETCH ph.p p JOIN FETCH p.a a WHERE "
+                    + "ph.number = :number").setParameter("number", phone).getResultList();
+            System.out.println(allAddressFromPhone);
             return allAddressFromPhone;
         } finally {
             em.close();
@@ -78,9 +84,6 @@ public class PersonFacade implements PersonInterface {
 
     @Override
     public List<Person> getPersonsWithHobby(String hobby) {
-
-               
-
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -99,8 +102,7 @@ public class PersonFacade implements PersonInterface {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            List<Person> personWithZip = em.createQuery("Select p from Person p JOIN p.address_id a").getResultList();
-            em.getTransaction().commit();
+            List<Person> personWithZip = em.createQuery("Select p from Person p JOIN p.a a WHERE a.zipCode = :zip").setParameter("zip", zip).getResultList();
             return personWithZip;
         } finally {
             em.close();
@@ -123,7 +125,6 @@ public class PersonFacade implements PersonInterface {
     @Override
     public List<Address> getAllZipcodes() {
         EntityManager em = emf.createEntityManager();
-
         try {
             em.getTransaction().begin();
             List<Address> allCities = em.createQuery("Select a from Address a", Address.class).getResultList();
@@ -161,6 +162,12 @@ public class PersonFacade implements PersonInterface {
             if (p == null) {
                 throw new PersonNotFoundException("Person doesn't exist");
             }
+            Query query = em.createQuery("select p FROM Phone p where p.Person_id = : number");
+            query.setParameter("number", id);
+            List<Phone> allPhones = query.getResultList();
+            System.out.println(allPhones);
+            
+            
             em.remove(p);
             em.getTransaction().commit();
             return p;
@@ -176,14 +183,19 @@ public class PersonFacade implements PersonInterface {
         if (fname == null || lname == null || fname == "" || lname == "") {
             throw new MissingInputException("Missing input");
         }
-        Person person = new Person();
+        Person person = new Person("", fname, lname);
+        Address address = new Address(street, "", zip, city);
+        person.setA(address);
+        
+        
         int id = 0;
         try {
-            person.setfName(fname);
-            person.setlName(lname);
-            person.getAddress().setCity(city);
-            person.getAddress().setZipCode(zip);
-            person.getAddress().setStreet(street);
+            
+
+            em.getTransaction().begin();
+            em.persist(address);
+            em.persist(person);
+            em.getTransaction().commit();
 
         } finally {
             em.close();
@@ -202,6 +214,5 @@ public class PersonFacade implements PersonInterface {
             em.close();
         }
     }
-
 
 }

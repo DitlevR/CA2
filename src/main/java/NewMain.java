@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.servlet.jsp.PageContext;
@@ -43,10 +44,24 @@ public class NewMain {
 //        Persistence.generateSchema("pu", null);
         EntityManager em = EMF.createEntityManager();
         
-        System.out.println(FACADE.getAllPersons().size());
+        em.getTransaction().begin();
+        Query query = em.createQuery("select p FROM Phone p WHERE p.id = : number", Phone.class);
+//            query.setParameter("number", 5);
+            
+            List<Phone> allPhones = query.setParameter("number", 1).getResultList();
+            em.getTransaction().commit();
+            System.out.println(allPhones);
+//        System.out.println(FACADE.getAllPersons().size());
 //        System.out.println(FACADE.getAddresFromPhone("12345678"));
 //        System.out.println(FACADE.getPersonsWithHobby("Svømning"));
+
 //        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
+
+
+//        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
+//        System.out.println(FACADE.getAllPersonWithZipcode("0001"));
+
+
 
 //        try {
 //            em.getTransaction().begin();
