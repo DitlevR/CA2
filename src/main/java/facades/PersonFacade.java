@@ -49,6 +49,7 @@ public class PersonFacade implements PersonInterface {
     /**
      * EntityManager em = emf.createEntityManager(); try { } finally {
      * em.close(); }
+     * @param phone
      */
     @Override
     public List<Address> getAddresFromPhone(String phone) {
@@ -56,7 +57,10 @@ public class PersonFacade implements PersonInterface {
 
         try {
             em.getTransaction().begin();
-            List<Address> allAddressFromPhone = em.createQuery("select ph from Phone ph JOIN FETCH ph.p p JOIN FETCH p.a a WHERE ph.number = :number").setParameter("number", phone).getResultList();
+            List<Address> allAddressFromPhone = em.createQuery("select ph from "
+                    + "Phone ph JOIN FETCH ph.p p JOIN FETCH p.a a WHERE "
+                    + "ph.number = :number").setParameter("number", phone).getResultList();
+            System.out.println(allAddressFromPhone);
             return allAddressFromPhone;
         } finally {
             em.close();
@@ -119,7 +123,6 @@ public class PersonFacade implements PersonInterface {
     @Override
     public List<Address> getAllZipcodes() {
         EntityManager em = emf.createEntityManager();
-
         try {
             em.getTransaction().begin();
             List<Address> allCities = em.createQuery("Select a from Address a", Address.class).getResultList();
