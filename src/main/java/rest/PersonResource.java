@@ -65,22 +65,24 @@ public class PersonResource {
         return GSON.toJson(hobbylist);
     }
 
-    @Path("/allPersonsCity")
+    @Path("/allPersonsCity/{zip}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String allPersonsCity() {
+    public String allPersonsCity(String zip) {
 
-        //System.out.println("--------------->"+count);
-        return "{\"msg\":\"Hello form person person city\"}";
+        List allPersonwithZip = FACADE.getAllPersonWithZipcode(zip);
+        
+        return GSON.toJson(allPersonwithZip);
     }
 
     @Path("/countofPeopleHobby")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String countofPeopleHobby() {
+    public String countofPeopleHobby(String Hobby) {
+        int count = FACADE.countPersonsWithHobby(Hobby);
 
         //System.out.println("--------------->"+count);
-        return "{\"msg\":\"Hello form person person hobby count\"}";
+        return GSON.toJson(count);
     }
 
     @Path("/allZip")
@@ -88,8 +90,8 @@ public class PersonResource {
     @Produces({MediaType.APPLICATION_JSON})
     public String allZip() {
 
-        //System.out.println("--------------->"+count);
-        return "{\"msg\":\"Hello form all zip codes\"}";
+        List getAll = FACADE.getAllZipcodes();
+        return GSON.toJson(getAll) ;
     }
 
 }
