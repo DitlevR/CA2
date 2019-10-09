@@ -58,7 +58,15 @@ public class PersonFacade implements PersonInterface{
 
     @Override
     public List<Person> getPersonsWithHobby(String hobby) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                EntityManager em = emf.createEntityManager();
+         try {
+             em.getTransaction().begin();    
+             List<Person> personWithHobby = em.createQuery("SELECT person FROM Person person JOIN PER_HOB hobbies WHERE hobbies.id = :id").getResultList();
+             em.getTransaction().commit();
+             return personWithHobby;
+         } finally {
+             em.close();
+         }
     }
 
     
@@ -176,6 +184,7 @@ public class PersonFacade implements PersonInterface{
             em.close();
         }
     }
+    
     
     
 

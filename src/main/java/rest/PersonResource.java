@@ -8,6 +8,7 @@ import errorhandling.MissingInputException;
 //import entities.RenameMe;
 import utils.EMF_Creator;
 import facades.PersonFacade;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -55,13 +56,13 @@ public class PersonResource {
         return GSON.toJson(persondto);
     }
 
-    @Path("/allPersonsHobby")
+    @Path("/allPersonsHobby/{Hobby}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String allPersonsHobby() {
+    public String allPersonsHobby(String hobby) {
 
-        //System.out.println("--------------->"+count);
-        return "{\"msg\":\"Hello form person person hobby\"}";
+        List<Person> hobbylist = FACADE.getPersonsWithHobby(hobby);
+        return GSON.toJson(hobbylist);
     }
 
     @Path("/allPersonsCity")
