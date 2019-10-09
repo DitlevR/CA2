@@ -40,12 +40,13 @@ public class NewMain {
      public static final PersonFacade FACADE =  PersonFacade.getFacadeExample(EMF);
 
     public static void main(String[] args) {
-        Persistence.generateSchema("pu", null);
+//        Persistence.generateSchema("pu", null);
         EntityManager em = EMF.createEntityManager();
         
+        System.out.println(FACADE.getAllPersons().size());
 //        System.out.println(FACADE.getAddresFromPhone("12345678"));
 //        System.out.println(FACADE.getPersonsWithHobby("Svømning"));
-        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
+//        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
 
 //        try {
 //            em.getTransaction().begin();
