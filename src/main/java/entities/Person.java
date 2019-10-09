@@ -20,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import org.eclipse.persistence.jpa.config.Cascade;
 
 /**
  *
@@ -39,8 +40,8 @@ public class Person implements Serializable {
 
     @OneToMany(mappedBy = "p") //hvilken variabel i Phone.java hvert Person object knyttes til
     private List<Phone> phones; //liste som et Person objekt knyttes til
-
-    @ManyToOne//(fetch=FetchType.LAZY)
+//(fetch=FetchType.LAZY)
+    @ManyToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "ADDRESS_ID")
     private Address a;
 
