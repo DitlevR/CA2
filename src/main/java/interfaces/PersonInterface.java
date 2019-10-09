@@ -16,7 +16,7 @@ import java.util.List;
 
 public interface PersonInterface {
 
-    public Address getAddresFromPhone(String phone);
+    public List<Address> getAddresFromPhone(String phone);
     
     public List<Hobby> getHobbiesFromPhone(String phone);
     
