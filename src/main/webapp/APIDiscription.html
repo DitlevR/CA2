@@ -11,7 +11,9 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
+   
     <body>
+
         <div class="container">
 
             <br/>
@@ -31,55 +33,89 @@ and open the template in the editor.
                         <td>/api/personInfo/{phone}</td>
                         <td></td>
                         <td>person</td>
-                        <td></td>
+                        <td>(e1) :{ status : 404, "msg": "No personInfo found with that phone" }</td>
                     </tr>
                     <tr>  
                         <td>Post</td>
                         <td>/api/addPerson/</td>
                         <td><ul>
-                                <li>Person: Name</li>
-                                <li>Person: Hobby</li>
-                                <li>Person: Phone</li>
-                                <li>Person: City</li>
+                                
+                                <p>"name" : String</p>
+                                <p>"street" : String</p>
+                                <p>"city" : String</p>
+                                <p>"phone" : String</p>
+                                <p>"hobbies" : String</p>
+                                
                             </ul></td>
-                        <td></td>
-                        <td></td>
+                        <td><p>"id" : "Integer"
+                                <p>"name" : String</p>
+                                <p>"street" : String</p>
+                                <p>"city" : String</p>
+                                <p>"phone" : String</p>
+                                <p>"hobbies" : String</p></td>
+                        <td>(e2) :{ status : 400, "msg": "All input fields must be filled" }</td>
                     </tr>
                     <tr>  
                         <td>Get</td>
                         <td>/api/allPersonsHobby/{hobby}</td>
                         <td></td>
                         <td>[person, person....]</td>
-                        <td></td>
+                        <td>:{ status : 404, "msg": "No person with that hobby found" }</td>
                     </tr>                    
                     <tr>  
                         <td>Get</td>
                         <td>/api/allPersonsCity/{city}</td>
                         <td></td>
                         <td>[person, person....]</td>
-                        <td></td>
+                        <td>(e1) :{ status : 404, "msg": "No person with that city found" }</td>
                     </tr>
                     <tr>  
                         <td>Get</td>
                         <td>/api/countofPeopleHobby/{hoppy}</td>
                         <td></td>
                         <td>int</td>
-                        <td></td>
+                        <td>(e1) :{ status : 404, "msg": "No people found with that hobby" }</td>
                     </tr>
                     <tr>  
                         <td>Get</td>
                         <td>/api/allZip/</td>
                         <td></td>
                         <td>[zip, zip, ...]</td>
-                        <td></td>
+                        <td>(e1) :{ status : 404, "msg": "No zip found" }</td>
                     </tr>
+                    <tr>  
+                        <td>PUT</td>
+                        <td>/api/editPerson/{id}</td>
+                        <td>
+                            <p>"id" : "Integer"
+                                <p>"name" : String</p>
+                                <p>"street" : String</p>
+                                <p>"city" : String</p>
+                                <p>"phone" : String</p>
+                                <p>"hobbies" : String</p>
+                        </td>
+                        <td>
+                            <p>"id" : "Integer"
+                                <p>"name" : String</p>
+                                <p>"street" : String</p>
+                                <p>"city" : String</p>
+                                <p>"phone" : String</p>
+                                <p>"hobbies" : String</p>
+                        </td>
+                        <td>(e1) :{ status : 404, "msg": "No person found" }</td>
+                    </tr>
+                    
+                    
 
                 </tbody>
             </table>
+            
+            <p> (e1) :{ status : 404, "msg": "No content found for this request" }
+                (e2) :{ status : 400, "msg": "All input fields must be filled" }
         </div>
 
 
-
+        
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

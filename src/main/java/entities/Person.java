@@ -33,9 +33,9 @@ public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String email;
     private String fName;
     private String lName;
+    private String email;
 
     @OneToMany(mappedBy = "p") //hvilken variabel i Phone.java hvert Person object knyttes til
     private List<Phone> phones; //liste som et Person objekt knyttes til
@@ -104,7 +104,7 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Person[ id=" + id + " ]";
+        return "entities.Person[ id=" + id + " name=" + fName + " " + lName + " ]";
     }
 
     public Address getAddress() {
