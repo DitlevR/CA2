@@ -1,5 +1,6 @@
 package facades;
 
+import dto.PersonDTO;
 import entities.Address;
 import entities.Hobby;
 import utils.EMF_Creator;
@@ -185,7 +186,7 @@ List<Hobby> all = facade.getHobbiesFromPhone("12345678");
 
     @Test
     public void getPersonsWithHobby() {
-List<Person> withHobby = facade.getPersonsWithHobby("Svømning");
+List<PersonDTO> withHobby = facade.getPersonsWithHobby("Svømning");
         assertEquals(4, all.size());
 
     }
@@ -226,7 +227,7 @@ List<Address> all = facade.getAllZipcodes();
 
     @Test
     public void testGetAll() {
-        List<Person> all = facade.getAllPersons();
+        List<PersonDTO> all = facade.getAllPersons();
         assertEquals(4, all.size());
 
     }
