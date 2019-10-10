@@ -5,22 +5,20 @@
  */
 package dto;
 
-import entities.Person;
+import entities.Phone;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author Ludvig
+ * @author Rumle
  */
-public class PersonsDTO {
+public class PhonesDTO {
+    private List<PhoneDTO> all = new ArrayList<>();
     
-    List<PersonDTO> all = new ArrayList();
-
-    public PersonsDTO(List<Person> personEntities) {
-        for(Person p : personEntities) {
-            all.add(new PersonDTO(p));
-        };
-    }  
-    
+    public PhonesDTO(List<Phone> phoneEntities) {
+        for(Phone p : phoneEntities) {
+            all.add(new PhoneDTO(p));
+        }
+    }
 }
