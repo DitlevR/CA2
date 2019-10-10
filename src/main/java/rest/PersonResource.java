@@ -60,12 +60,7 @@ public class PersonResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String allPersons() {
-        List<Person> getAll = FACADE.getAllPersons();
-        
-        PersonsDTO psDTO = new PersonsDTO(getAll);
-        
-        String g = GSON.toJson(psDTO);
-        return g;
+        return GSON.toJson(new PersonsDTO(FACADE.getAllPersons()));
     }
 
     @GET
