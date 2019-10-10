@@ -22,9 +22,9 @@ public interface PersonInterface {
     
     public List<Hobby> getHobbiesFromPhone(String phone);
     
-    public List<PersonDTO> getPersonsWithHobby(String hobby);
+    public List<Person> getPersonsWithHobby(String hobby);
     
-    public List<PersonDTO> getAllPersonWithZipcode(String zip);
+    public List<Person> getAllPersonWithZipcode(String zip);
     
     public Integer countPersonsWithHobby(String hobby);
     
@@ -36,7 +36,7 @@ public interface PersonInterface {
     
     public Person addPerson(String fname, String lname, String street, String city, String zipcode) throws MissingInputException;
     
-    public List<PersonDTO> getAllPersons();
+    public List<Person> getAllPersons();
        
     
     
