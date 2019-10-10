@@ -22,6 +22,8 @@ public class AddressDTO {
         this.zip = a.getZipCode();
         
     }
+
+    
     
     
 }

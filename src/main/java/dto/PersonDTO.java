@@ -20,27 +20,27 @@ public class PersonDTO {
     private int id;
     private String fName;
     private String lName;
-    private AddressDTO addres;
-    private PhonesDTO phone;
-    private HobbiesDTO hobbies;
+    private String addres;
+    private String phone;
+    private String hobbies;
 
     public PersonDTO(Person p) {
         this.fName = p.getfName();
         this.lName = p.getlName();
-        this.addres = new AddressDTO(p.getAddress());
-        this.phone = new PhonesDTO(p.getPhone());
-        this.hobbies = new HobbiesDTO(p.getHobbies());
+        this.addres = new AddressDTO(p.getAddress()).toString();
+        this.phone = new PhonesDTO(p.getPhone()).toString();
+        this.hobbies = new HobbiesDTO(p.getHobbies()).toString();
 
     }
 
-    public PersonDTO(int id, String fName, String lName, AddressDTO addres, PhonesDTO phone, HobbiesDTO hobbies) {
-        this.id = id;
-        this.fName = fName;
-        this.lName = lName;
-        this.addres = addres;
-        this.phone = phone;
-        this.hobbies = hobbies;
-    }
+//    public PersonDTO(int id, String fName, String lName, AddressDTO addres, PhonesDTO phone, HobbiesDTO hobbies) {
+//        this.id = id;
+//        this.fName = fName;
+//        this.lName = lName;
+//        this.addres = addres;
+//        this.phone = phone;
+//        this.hobbies = hobbies;
+//    }
     
     
 
