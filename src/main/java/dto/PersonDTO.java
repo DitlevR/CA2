@@ -12,6 +12,7 @@ import entities.Person;
  * @author Rumle
  */
 public class PersonDTO {
+
     private int id;
     private String fName;
     private String lName;
@@ -31,7 +32,15 @@ public class PersonDTO {
         this.hobbies = hobbies;
     }
 
-    
+    public PersonDTO(Person p) {
+        this.fName = p.getfName();
+        this.lName = p.getlName();
+        this.street = p.getAddress().getStreet();
+        this.city = p.getAddress().getCity();
+        this.zip = p.getAddress().getZipCode();
+        this.phone = p.getPhone().toString();
+        this.hobbies = p.getHobbies().toString();
+    }
 
     public int getId() {
         return id;
@@ -96,11 +105,5 @@ public class PersonDTO {
     public void setHobbies(String hobbies) {
         this.hobbies = hobbies;
     }
-    
-    
-}
-    
 
-    
-    
-    
+}

@@ -6,6 +6,7 @@ import entities.Address;
 //import entities.CityInfo;
 import entities.Hobby;
 import entities.Person;
+import entities.Phone;
 import errorhandling.MissingInputException;
 import errorhandling.PersonNotFoundException;
 import interfaces.PersonInterface;
@@ -49,6 +50,7 @@ public class PersonFacade implements PersonInterface {
     /**
      * EntityManager em = emf.createEntityManager(); try { } finally {
      * em.close(); }
+     *
      * @param phone
      */
     @Override
@@ -81,7 +83,7 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public List<Person> getPersonsWithHobby(String hobby) {               
+    public List<Person> getPersonsWithHobby(String hobby) {
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -161,6 +163,12 @@ public class PersonFacade implements PersonInterface {
             if (p == null) {
                 throw new PersonNotFoundException("Person doesn't exist");
             }
+            Query query = em.createQuery("select p FROM Phone p where p.Person_id = : number");
+            query.setParameter("number", id);
+            List<Phone> allPhones = query.getResultList();
+            System.out.println(allPhones);
+            
+            
             em.remove(p);
             em.getTransaction().commit();
             return p;
@@ -176,14 +184,19 @@ public class PersonFacade implements PersonInterface {
         if (fname == null || lname == null || fname == "" || lname == "") {
             throw new MissingInputException("Missing input");
         }
-        Person person = new Person();
+        Person person = new Person("", fname, lname);
+        Address address = new Address(street, "", zip, city);
+        person.setA(address);
+        
+        
         int id = 0;
         try {
-            person.setfName(fname);
-            person.setlName(lname);
-            person.getAddress().setCity(city);
-            person.getAddress().setZipCode(zip);
-            person.getAddress().setStreet(street);
+            
+
+            em.getTransaction().begin();
+            em.persist(address);
+            em.persist(person);
+            em.getTransaction().commit();
 
         } finally {
             em.close();

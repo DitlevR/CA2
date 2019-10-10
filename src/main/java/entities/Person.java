@@ -38,7 +38,7 @@ public class Person implements Serializable {
     private String lName;
     private String email;
 
-    @OneToMany(mappedBy = "p") //hvilken variabel i Phone.java hvert Person object knyttes til
+    @OneToMany(mappedBy = "p", cascade = CascadeType.REMOVE) //hvilken variabel i Phone.java hvert Person object knyttes til
     private List<Phone> phones; //liste som et Person objekt knyttes til
 //(fetch=FetchType.LAZY)
     @ManyToOne//(cascade = CascadeType.ALL)

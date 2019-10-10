@@ -5,6 +5,8 @@ import entities.Hobby;
 import utils.EMF_Creator;
 import entities.Person;
 import entities.Phone;
+import errorhandling.MissingInputException;
+import errorhandling.PersonNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -56,8 +58,7 @@ public class PersonFacadeTest {
         The file config.properties and the corresponding helper class utils.Settings is added just to do that. 
         See below for how to use these files. This is our RECOMENDED strategy
      */
-    @Disabled
-//    @BeforeAll
+    @BeforeAll
     public static void setUpClassV2() {
         p1 = new Person("Hans@mail.dk", "Hans", "Hansen");
         p2 = new Person("Jens@mail.dk", "Jens", "Jensen");
@@ -123,8 +124,7 @@ public class PersonFacadeTest {
 
     // Setup the DataBase in a known state BEFORE EACH TEST
     //TODO -- Make sure to change the script below to use YOUR OWN entity class
-    @Disabled
-//    @BeforeEach
+    @BeforeEach
     public void setUp() {
 
         EntityManager em = emf.createEntityManager();
@@ -172,47 +172,58 @@ public class PersonFacadeTest {
         }
     }
 
-    @Disabled
     @Test
     public void getAddressFromPhoneTest() {
         Assertions.assertNotNull(p1);
     }
 
-//    @Test
-//    public void getHobbiesFromPhoneTest() {
-//
-//    }
-//
-//    @Test
-//    public void getPersonsWithHobby() {
-//
-//    }
-//
-//    @Test
-//    public void countPersonWithHobbyTest() {
-//
-//    }
-//
-//    @Test
-//    public void getAllZipcodesTest() {
-//
-//    }
+    @Test
+    public void getHobbiesFromPhoneTest() {
+List<Hobby> all = facade.getHobbiesFromPhone("12345678");
+        assertEquals(2, all.size());
+    }
+
+    @Test
+    public void getPersonsWithHobby() {
+List<Person> withHobby = facade.getPersonsWithHobby("Svømning");
+        assertEquals(4, all.size());
+
+    }
+
+    @Disabled
+    @Test
+    public void countPersonWithHobbyTest() {
+int count = facade.countPersonsWithHobby("Svømning");
+        assertEquals(1, count);
+    }
+
+    @Test
+    public void getAllZipcodesTest() {
+List<Address> all = facade.getAllZipcodes();
+        assertEquals(4, all.size());
+    }
 //
 //    @Test
 //    public void editPersonTest() {
 //
 //    }
 //
-//    @Test
-//    public void testAddPersonWithNoName() {
-//
-//    }
-//
-//    @Test
-//    public void deletePersonDontExistTest() {
-//
-//    }
+    @Test
+    public void testAddPerson() throws MissingInputException {
+        Person person = facade.addPerson("Test", "Test", "Testvej", "TestBy", "1234");
+
+        Assertions.assertNotNull(person);
+
+    }
+
     @Disabled
+    @Test
+    public void deletePersonDontExistTest() throws PersonNotFoundException {
+        facade.deletePerson(p1.getId());
+        assertEquals(3, facade.getAllPersons().size());
+
+    }
+
     @Test
     public void testGetAll() {
         List<Person> all = facade.getAllPersons();
@@ -222,12 +233,21 @@ public class PersonFacadeTest {
 
     @AfterEach
     public void tearDown() {
-//        Remove any data after each test was run
+
+        emf = EMF_Creator.createEntityManagerFactory(
+                "pu",
+                "jdbc:mysql://localhost:3307/startcode_test",
+                "dev",
+                "ax2",
+                EMF_Creator.Strategy.DROP_AND_CREATE);
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.createNamedQuery("Phone.deleteAllRows").executeUpdate();
+        em.createNamedQuery("Hobby.deleteAllRows").executeUpdate();
+        em.createNamedQuery("Person.deleteAllRows").executeUpdate();
+        em.createNamedQuery("Address.deleteAllRows").executeUpdate();
+        em.getTransaction().commit();
+
     }
 
-    // TODO: Delete or change this method 
-//    @Test
-//    public void testAFacadeMethod() {
-//        assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
-//    }
 }

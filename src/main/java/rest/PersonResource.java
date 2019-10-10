@@ -3,9 +3,9 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.PersonDTO;
+import entities.Address;
 import entities.Person;
 import errorhandling.MissingInputException;
-//import entities.RenameMe;
 import utils.EMF_Creator;
 import facades.PersonFacade;
 import java.util.List;
@@ -13,7 +13,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -44,6 +43,7 @@ public class PersonResource {
 //    public String getPerson(@PathParam("id") int id) {
 //        return GSON.toJson(new PersonDTO("Hans", "Hansen", "Lyng", "Holte", "2340", "45609675", "tennis"));
 //    }
+    
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
@@ -51,8 +51,26 @@ public class PersonResource {
         PersonDTO persondto = GSON.fromJson(person, PersonDTO.class);
         Person added = FACADE.addPerson(persondto.getfName(),
                 persondto.getlName(),
-                 persondto.getStreet(), persondto.getCity(), persondto.getZip());
-        return GSON.toJson(persondto);
+                persondto.getStreet(), persondto.getCity(), persondto.getZip());
+        return GSON.toJson(added);
+    }
+    
+    @Path("all")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Person> allPersons() {
+        List<Person> getAll = FACADE.getAllPersons();
+        String g = GSON.toJson(getAll);
+        return getAll;
+    }
+
+    @GET
+    @Path("allZip")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String allZip() {
+        List<Address> getAll = FACADE.getAllZipcodes();
+        String g = GSON.toJson(getAll);
+        return g;
     }
 
     @Path("/allPersonsHobby/{Hobby}")
@@ -83,20 +101,20 @@ public class PersonResource {
         return count;
     }
 
-    @Path("/allZip")
-    @GET
-    @Produces({MediaType.APPLICATION_JSON})
-    public List allZip() {
-
-        List allzip = FACADE.getAllZipcodes();
-        return allzip;
-    }
+//    @Path("/allZip")
+//    @GET
+//    @Produces({MediaType.APPLICATION_JSON})
+//    public List allZip() {
+//
+//        List allzip = FACADE.getAllZipcodes();
+//        return allzip;
+//    }
 
     //denne virker
     @Path("/getAddresFromPhone/{phone}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List getAddresFromPhone(@PathParam("phone") String phone) {
+    public List<Address> getAddresFromPhone(@PathParam("phone") String phone) {
 
         List getAll = FACADE.getAddresFromPhone(phone);
         return getAll;
