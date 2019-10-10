@@ -35,7 +35,7 @@ public class PersonDTO {
     public PersonDTO(Person p) {
         this.fName = p.getfName();
         this.lName = p.getlName();
-        this.street = p.getAddress().getStreet();
+        //this.street = p.getAddress().getStreet();
         this.city = p.getAddress().getCity();
         this.zip = p.getAddress().getZipCode();
         this.phone = p.getPhone().toString();
