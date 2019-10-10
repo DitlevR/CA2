@@ -21,17 +21,28 @@ public class PersonDTO {
     private String fName;
     private String lName;
     private AddressDTO addres;
-    private List<PhoneDTO> phone;
-    private List<HobbyDTO> hobbies;
+    private PhonesDTO phone;
+    private HobbiesDTO hobbies;
 
     public PersonDTO(Person p) {
         this.fName = p.getfName();
         this.lName = p.getlName();
         this.addres = new AddressDTO(p.getAddress());
-//        this.phone = new PhonesDTO(p.getPhone());
-//        this.hobbies = new HobbiesDTO(hobbies);
+        this.phone = new PhonesDTO(p.getPhone());
+        this.hobbies = new HobbiesDTO(p.getHobbies());
 
     }
+
+    public PersonDTO(int id, String fName, String lName, AddressDTO addres, PhonesDTO phone, HobbiesDTO hobbies) {
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+        this.addres = addres;
+        this.phone = phone;
+        this.hobbies = hobbies;
+    }
+    
+    
 
     
     
