@@ -70,6 +70,7 @@ public class PersonResource {
     public String allPersonsCity(@PathParam("zip") String zip) {
         List allPersonwithZip = FACADE.getAllPersonWithZipcode(zip);
         return GSON.toJson(allPersonwithZip);
+        //return allPersonwithZip;
     }
 
     @Path("/countofPeopleHobby/{Hobby}")
@@ -91,6 +92,7 @@ public class PersonResource {
         return allzip;
     }
 
+    //denne virker
     @Path("/getAddresFromPhone/{phone}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})

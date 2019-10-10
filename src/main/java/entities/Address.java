@@ -104,7 +104,7 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Address[ id=" + id + " ]";
+        return "entities.Address[ id=" + id + " adress=" + street + " info=" + additionalInfo + " zipCode=" + zipCode + " city=" + city + " ]";
     }
     
 }
