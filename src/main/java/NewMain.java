@@ -1,4 +1,5 @@
 
+import dto.PersonsDTO;
 import entities.Address;
 //import entities.CityInfo;
 import entities.Hobby;
@@ -91,6 +92,28 @@ public class NewMain {
         Hobby h2 = new Hobby("Klatring", "man klatrer");
         Hobby h3 = new Hobby("Tegning", "man tegner");
         Hobby h4 = new Hobby("Sang", "man synger");
+        
+        System.out.println(new PersonsDTO(FACADE.getAllPersons()));
+        
+//        em.getTransaction().begin();
+//        Query query = em.createQuery("select p FROM Phone p WHERE p.id = : number", Phone.class);
+////            query.setParameter("number", 5);
+//
+//            List<Phone> allPhones = query.setParameter("number", 1).getResultList();
+//            em.getTransaction().commit();
+//            System.out.println(allPhones);
+////        System.out.println(FACADE.getAllPersons().size());
+////        System.out.println(FACADE.getAddresFromPhone("12345678"));
+////        System.out.println(FACADE.getPersonsWithHobby("Svømning"));
+////        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
+////        System.out.println(FACADE.getAllPersonWithZipcode("0001"));
+//
+////        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
+////        System.out.println(FACADE.getAllPersonWithZipcode("0001"));
+//
+//
+//        //System.out.println(FACADE.getAllPersonWithZipcode("0001"));
+//        System.out.println(FACADE.getAllZipcodes());
 
         Address a1 = new Address("Parkvej", "Der ligger en mose i området", "1234", "Brovst");
         Address a2 = new Address("Jagtvej", "ungdomshuset lå engang her", "1234", "Brovst");
