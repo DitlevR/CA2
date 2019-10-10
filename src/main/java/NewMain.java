@@ -45,8 +45,6 @@ public class NewMain {
 //        Persistence.generateSchema("pu", null);
         EntityManager em = EMF.createEntityManager();
 
-        em.getTransaction().begin();
-        Query query = em.createQuery("select p FROM Phone p WHERE p.id = : number", Phone.class);
 //            query.setParameter("number", 5);
 
 //            List<Phone> allPhones = query.setParameter("number", 1).getResultList();

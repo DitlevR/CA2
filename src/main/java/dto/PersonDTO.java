@@ -68,8 +68,4 @@ public class PersonDTO {
     public void setlName(String lName) {
         this.lName = lName;
     }
-
-//    this.addres  = new AddressDTO(p.getAddress());
-//        this.phone = new PhonesDTO(p.getPhone());
-//        this.hobbies = new HobbiesDTO(hobbies);
 }
