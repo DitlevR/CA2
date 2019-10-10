@@ -83,12 +83,12 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public List<Person> getPersonsWithHobby(String hobby) {
+    public List<PersonDTO> getPersonsWithHobby(String hobby) {
         EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin(); //"select h from Hobby h JOIN FETCH h.persons p WHERE h.name = :name"
-            List<Person> allPersonWithHobby = em.createQuery("select p from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter("name", hobby).getResultList();
+            List<PersonDTO> allPersonWithHobby = em.createQuery("select p from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter("name", hobby).getResultList();
             return allPersonWithHobby;
         } finally {
             em.close();
@@ -98,11 +98,11 @@ public class PersonFacade implements PersonInterface {
 
     //virker ikke helt endnu
     @Override
-    public List<Person> getAllPersonWithZipcode(String zip) {
+    public List<PersonDTO> getAllPersonWithZipcode(String zip) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            List<Person> personWithZip = em.createQuery("Select p from Person p JOIN p.a a WHERE a.zipCode = :zip").setParameter("zip", zip).getResultList();
+            List<PersonDTO> personWithZip = em.createQuery("Select p from Person p JOIN p.a a WHERE a.zipCode = :zip").setParameter("zip", zip).getResultList();
             return personWithZip;
         } finally {
             em.close();
@@ -205,11 +205,11 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public List<Person> getAllPersons() {
+    public List<PersonDTO> getAllPersons() {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            List<Person> all = em.createQuery("select p from Person p", Person.class).getResultList();
+            List<PersonDTO> all = em.createQuery("select p from Person p", PersonDTO.class).getResultList();
             return all;
         } finally {
             em.close();
