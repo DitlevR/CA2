@@ -21,21 +21,20 @@ public class PersonDTO {
     private String fName;
     private String lName;
     private AddressDTO addres;
-    private List<PhoneDTO> phone;
-    private List<HobbyDTO> hobbies;
+    private String phone;
+    private String hobbies;
+    private String city;
+    private String zip;
 
     public PersonDTO(Person p) {
         this.fName = p.getfName();
         this.lName = p.getlName();
-<<<<<<< HEAD
         //this.street = p.getAddress().getStreet();
         this.city = p.getAddress().getCity();
         this.zip = p.getAddress().getZipCode();
         this.phone = p.getPhone().toString();
         this.hobbies = p.getHobbies().toString();
     }
-    
-    
 
     public int getId() {
         return id;
@@ -60,17 +59,9 @@ public class PersonDTO {
     public void setlName(String lName) {
         this.lName = lName;
     }
-=======
-        this.addres = new AddressDTO(p.getAddress());
+     
+//    this.addres  = new AddressDTO(p.getAddress());
 //        this.phone = new PhonesDTO(p.getPhone());
 //        this.hobbies = new HobbiesDTO(hobbies);
->>>>>>> 6b6435b4228cd9b632a489039cfb32c50cd6c5e2
 
-    }
-
-    
-    
-
-    }
-
-
+}
