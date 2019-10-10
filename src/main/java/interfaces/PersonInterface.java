@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import dto.PersonDTO;
+import dto.PersonsDTO;
 import entities.Address;
 //import entities.CityInfo;
 import entities.Hobby;
@@ -20,9 +22,9 @@ public interface PersonInterface {
     
     public List<Hobby> getHobbiesFromPhone(String phone);
     
-    public List<Person> getPersonsWithHobby(String hobby);
+    public List<PersonDTO> getPersonsWithHobby(String hobby);
     
-    public List<Person> getAllPersonWithZipcode(String zip);
+    public List<PersonDTO> getAllPersonWithZipcode(String zip);
     
     public Integer countPersonsWithHobby(String hobby);
     
@@ -34,7 +36,7 @@ public interface PersonInterface {
     
     public Person addPerson(String fname, String lname, String street, String city, String zipcode) throws MissingInputException;
     
-    public List<Person> getAllPersons();
+    public List<PersonDTO> getAllPersons();
        
     
     
