@@ -41,6 +41,8 @@ public class PersonDTO {
         this.phone = p.getPhone().toString();
         this.hobbies = p.getHobbies().toString();
     }
+    
+    
 
     public int getId() {
         return id;

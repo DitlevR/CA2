@@ -3,6 +3,7 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.PersonDTO;
+import dto.PersonsDTO;
 import entities.Address;
 import entities.Person;
 import errorhandling.MissingInputException;
@@ -49,19 +50,22 @@ public class PersonResource {
     @Produces({MediaType.APPLICATION_JSON})
     public String savePerson(String person) throws MissingInputException {
         PersonDTO persondto = GSON.fromJson(person, PersonDTO.class);
-        Person added = FACADE.addPerson(persondto.getfName(),
-                persondto.getlName(),
-                persondto.getStreet(), persondto.getCity(), persondto.getZip());
-        return GSON.toJson(added);
+//        Person added = FACADE.addPerson(persondto.getfName(),
+//                persondto.getlName(),
+//                persondto.getStreet(), persondto.getCity(), persondto.getZip());
+        return GSON.toJson(persondto);
     }
     
     @Path("all")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Person> allPersons() {
+    public String allPersons() {
         List<Person> getAll = FACADE.getAllPersons();
-        String g = GSON.toJson(getAll);
-        return getAll;
+        
+        PersonsDTO psDTO = new PersonsDTO(getAll);
+        
+        String g = GSON.toJson(psDTO);
+        return g;
     }
 
     @GET
@@ -88,6 +92,7 @@ public class PersonResource {
     public String allPersonsCity(@PathParam("zip") String zip) {
         List allPersonwithZip = FACADE.getAllPersonWithZipcode(zip);
         return GSON.toJson(allPersonwithZip);
+        //return allPersonwithZip;
     }
 
     @Path("/countofPeopleHobby/{Hobby}")
@@ -100,6 +105,16 @@ public class PersonResource {
         return count;
     }
 
+//    @Path("/allZip")
+//    @GET
+//    @Produces({MediaType.APPLICATION_JSON})
+//    public List allZip() {
+//
+//        List allzip = FACADE.getAllZipcodes();
+//        return allzip;
+//    }
+
+    //denne virker
     @Path("/getAddresFromPhone/{phone}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})

@@ -215,5 +215,5 @@ public class PersonFacade implements PersonInterface {
             em.close();
         }
     }
-
 }
+
