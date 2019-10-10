@@ -60,7 +60,7 @@ public class PersonResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String allPersons() {
-        return GSON.toJson(FACADE.getAllPersons());
+        return GSON.toJson(new PersonsDTO(FACADE.getAllPersons()));
     }
 
     @GET
@@ -77,7 +77,7 @@ public class PersonResource {
     @Produces({MediaType.APPLICATION_JSON})
     public String allPersonsHobby(@PathParam("Hobby") String hobby) {
 
-        List<PersonDTO> hobbylist = FACADE.getPersonsWithHobby(hobby);
+        List<Person> hobbylist = FACADE.getPersonsWithHobby(hobby);
         return GSON.toJson(hobbylist);
     }
 

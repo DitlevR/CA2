@@ -44,19 +44,20 @@ public class PersonDTO {
         this.id = id;
     }
 
+
     public String getfName() {
         return fName;
     }
 
-    public PersonDTO(int id, String fName, String lName, AddressDTO addres, PhonesDTO phone, HobbiesDTO hobbies) {
-        this.id = id;
-        this.fName = fName;
-        this.lName = lName;
-        this.addres = addres;
-        this.phone = phone;
-        this.hobbies = hobbies;
-    }
-
+//    public PersonDTO(int id, String fName, String lName, AddressDTO addres, PhonesDTO phone, HobbiesDTO hobbies) {
+//        this.id = id;
+//        this.fName = fName;
+//        this.lName = lName;
+//        this.addres = addres;
+//        this.phone = phone;
+//        this.hobbies = hobbies;
+//    }
+    
     public void setfName(String fName) {
         this.fName = fName;
     }
