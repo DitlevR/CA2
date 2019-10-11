@@ -47,7 +47,7 @@ import javax.ws.rs.core.MediaType;
             ),
             @Server(
                     description = "Server API",
-                    url = "http://mydroplet"
+                    url = "https://idon.dk/CA2"
             )
 
         }
