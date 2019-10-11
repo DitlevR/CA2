@@ -75,7 +75,7 @@ public class PersonResource {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Get Movie info by ID",
-            tags = {"movie"},
+            tags = {"person"},
             responses = {
                 @io.swagger.v3.oas.annotations.responses.ApiResponse(
                         content = @Content(mediaType = "application/json", schema = @Schema(implementation = Person.class))),
