@@ -167,8 +167,7 @@ public class PersonFacade implements PersonInterface {
             query.setParameter("number", id);
             List<Phone> allPhones = query.getResultList();
             System.out.println(allPhones);
-            
-            
+
             em.remove(p);
             em.getTransaction().commit();
             return p;
@@ -187,11 +186,9 @@ public class PersonFacade implements PersonInterface {
         Person person = new Person("", fname, lname);
         Address address = new Address(street, "", zip, city);
         person.setA(address);
-        
-        
+
         int id = 0;
         try {
-            
 
             em.getTransaction().begin();
             em.persist(address);
@@ -215,5 +212,18 @@ public class PersonFacade implements PersonInterface {
             em.close();
         }
     }
-}
 
+    @Override
+    public Person getPersonFromID(int id) throws PersonNotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Person person = em.find(Person.class, id);
+            em.getTransaction().commit();
+            return person;
+
+        } finally {
+            em.close();
+        }
+    }
+}

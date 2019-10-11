@@ -186,7 +186,7 @@ List<Hobby> all = facade.getHobbiesFromPhone("12345678");
 
     @Test
     public void getPersonsWithHobby() {
-List<PersonDTO> withHobby = facade.getPersonsWithHobby("Svømning");
+List<Person> withHobby = facade.getPersonsWithHobby("Svømning");
         assertEquals(4, all.size());
 
     }
@@ -227,7 +227,7 @@ List<Address> all = facade.getAllZipcodes();
 
     @Test
     public void testGetAll() {
-        List<PersonDTO> all = facade.getAllPersons();
+        List<Person> all = facade.getAllPersons();
         assertEquals(4, all.size());
 
     }
