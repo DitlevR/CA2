@@ -5,41 +5,39 @@
  */
 package dto;
 
-import entities.Address;
 import entities.Hobby;
 import entities.Person;
 import entities.Phone;
+//import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 
 /**
  *
  * @author Rumle
  */
+@Schema(name = "PersonDTO")
 public class PersonDTO {
 
     private int id;
+    @Schema(required = true, example = "Hans")
     private String fName;
+    @Schema(required = true, example = "Hansen")
     private String lName;
-    private AddressDTO addres;
-    private String city;
-    private String zip;
-    private PhonesDTO phone;
+
+    @Schema(required = true, example = "Vejen 32")
+    private AddressDTO address;
+    @Schema(required = true, example = "1232414")
+    private PhonesDTO phones;
+    @Schema(required = true, example = "svimming")
     private HobbiesDTO hobbies;
 
     public PersonDTO(Person p) {
         this.fName = p.getfName();
         this.lName = p.getlName();
-        this.city = p.getAddress().getCity();
-        this.zip = p.getAddress().getZipCode();
-        this.addres = new AddressDTO(p.getAddress());
-        this.phone = new PhonesDTO(p.getPhone());
+        this.address = new AddressDTO(p.getAddress());
+        this.phones = new PhonesDTO(p.getPhone());
         this.hobbies = new HobbiesDTO(p.getHobbies());
     }
-
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -47,6 +45,10 @@ public class PersonDTO {
 
     public String getfName() {
         return fName;
+    }
+    
+    public PersonDTO() {
+        
     }
 
 //    public PersonDTO(int id, String fName, String lName, AddressDTO addres, PhonesDTO phone, HobbiesDTO hobbies) {
@@ -57,7 +59,11 @@ public class PersonDTO {
 //        this.phone = phone;
 //        this.hobbies = hobbies;
 //    }
-    
+
+    public int getId() {
+        return id;
+    }
+
     public void setfName(String fName) {
         this.fName = fName;
     }
@@ -69,4 +75,5 @@ public class PersonDTO {
     public void setlName(String lName) {
         this.lName = lName;
     }
+
 }
