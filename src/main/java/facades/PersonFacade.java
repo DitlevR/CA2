@@ -62,7 +62,6 @@ public class PersonFacade implements PersonInterface {
             List<Address> allAddressFromPhone = em.createQuery("select ph from "
                     + "Phone ph JOIN FETCH ph.p p JOIN FETCH p.a a WHERE "
                     + "ph.number = :number").setParameter("number", phone).getResultList();
-            System.out.println(allAddressFromPhone);
             return allAddressFromPhone;
         } finally {
             em.close();
@@ -111,11 +110,11 @@ public class PersonFacade implements PersonInterface {
 
     //skal lige konfigureres i forhold til hobby listen
     @Override
-    public Integer countPersonsWithHobby(String hobby) {
+    public long countPersonsWithHobby(String hobby) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            int count = (Integer) em.createQuery("select COUNT(p) from").getSingleResult();
+            long count = (long)em.createQuery("select COUNT(p) from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter("name", hobby).getSingleResult();
             return count;
         } finally {
             em.close();
@@ -178,13 +177,13 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public Person addPerson(String fname, String lname, String street, String city, String zip) throws MissingInputException {
+    public Person addPerson(PersonDTO dto) throws MissingInputException {
         EntityManager em = emf.createEntityManager();
-        if (fname == null || lname == null || fname == "" || lname == "") {
+        if (dto.getfName() == null || dto.getlName() == null || dto.getfName() == "" || dto.getlName() == "") {
             throw new MissingInputException("Missing input");
         }
-        Person person = new Person("", fname, lname);
-        Address address = new Address(street, "", zip, city);
+        Person person = new Person("", dto.getfName(), dto.getlName());
+        Address address = new Address(dto.getAddress().getStreet(), "", dto.getAddress().getZip(), dto.getAddress().getCity());
         person.setA(address);
 
         int id = 0;

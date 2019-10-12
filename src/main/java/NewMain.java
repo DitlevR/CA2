@@ -44,7 +44,7 @@ public class NewMain {
     public static void main(String[] args) {
 //        Persistence.generateSchema("pu", null);
         EntityManager em = EMF.createEntityManager();
-
+        
         Person p1 = new Person("fuglen@hotmail.com", "Hanne", "Svendsen");
         Person p2 = new Person("heavymetal@outlook.com", "Thorsen", "Odinsen");
         Person p3 = new Person("himmelen@outlook.com", "Iben", "Asgersen");
@@ -179,6 +179,9 @@ public class NewMain {
         
         em.getTransaction().commit();
         em.close();
+        System.out.println(FACADE.getAllZipcodes());
+        System.out.println(FACADE.countPersonsWithHobby("Sang"));
+        System.out.println(FACADE.getAddresFromPhone("12345678"));
 
 //        em.getTransaction().begin();
 //        Query query = em.createQuery("select p FROM Phone p WHERE p.id = : number", Phone.class);
