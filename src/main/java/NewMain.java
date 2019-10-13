@@ -1,11 +1,15 @@
 
+import dto.PersonDTO;
 import dto.PersonsDTO;
 import entities.Address;
 //import entities.CityInfo;
 import entities.Hobby;
 import entities.Person;
 import entities.Phone;
+import errorhandling.PersonNotFoundException;
 import facades.PersonFacade;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.DoubleStream;
 import javax.persistence.EntityManager;
@@ -41,7 +45,7 @@ public class NewMain {
 
     public static final PersonFacade FACADE = PersonFacade.getFacadeExample(EMF);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PersonNotFoundException {
 //        Persistence.generateSchema("pu", null);
         EntityManager em = EMF.createEntityManager();
         
@@ -177,9 +181,17 @@ public class NewMain {
 
         em.getTransaction().commit();
         em.close();
-        System.out.println(FACADE.getAllZipcodes());
-        System.out.println(FACADE.countPersonsWithHobby("Sang"));
-        System.out.println(FACADE.getAddresFromPhone("12345678"));
+//        System.out.println(FACADE.getAllZipcodes());
+//        System.out.println(FACADE.countPersonsWithHobby("Sang"));
+//        System.out.println(FACADE.getAddresFromPhone("12345678"));
+//        System.out.println(FACADE.deletePerson(2));
+        List<Person> persons = FACADE.getAllPersons();
+         List<PersonDTO> dtos = new ArrayList();
+        
+        for(Person p : persons) {
+            dtos.add(new PersonDTO(p));
+        }
+        System.out.println(dtos.toArray());
 
     }
 }

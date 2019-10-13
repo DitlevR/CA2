@@ -88,16 +88,19 @@ public class PersonResource {
         return GSON.toJson(dto);
     }
 
-    @POST
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Produces({MediaType.APPLICATION_JSON})
-
-    public String savePerson(String person) throws MissingInputException {
-        PersonDTO persondto = GSON.fromJson(person, PersonDTO.class);
-
-        Person added = FACADE.addPerson(persondto);
-        return GSON.toJson(new PersonDTO(added));
-    }
+//    @POST
+//    @Consumes({MediaType.APPLICATION_JSON})
+//    @Produces({MediaType.APPLICATION_JSON})
+//
+//    public String savePerson(String person) throws MissingInputException {
+//        PersonDTO persondto = GSON.fromJson(person, PersonDTO.class);
+//
+//        Person added = FACADE.addPerson(persondto.getfName(),
+//                persondto.getlName(), persondto.getAddress().
+//                getStreet(), persondto.getAddress().getZip(),
+//                persondto.getAddress().getCity());
+//        return GSON.toJson(new PersonDTO(added));
+//    }
 
     @Path("all")
     @GET
@@ -110,6 +113,9 @@ public class PersonResource {
                 @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "The Requested Movie"),
                 @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Movie not found")})
     public String allPersons() {
+        
+        
+            
         return GSON.toJson(new PersonsDTO(FACADE.getAllPersons()));
     }
 

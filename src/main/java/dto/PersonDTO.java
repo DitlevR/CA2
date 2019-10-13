@@ -9,7 +9,9 @@ import entities.Hobby;
 import entities.Person;
 import entities.Phone;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -23,42 +25,54 @@ public class PersonDTO {
     private String fName;
     @Schema(required = true, example = "Hansen")
     private String lName;
-
-    @Schema(required = true, example = "Vejen 32")
-    private AddressDTO address;
-    @Schema(required = true, example = "1232414")
-    private PhonesDTO phones;
-    @Schema(required = true, example = "svimming")
-    private HobbiesDTO hobbies;
+    @Schema(required = true, example = "Bakkevej 32")
+    private String street;
+    @Schema(required = true, example = "Vejle")
+    private String city;
+    @Schema(required = true, example = "2840")
+    private String zip;
+    @Schema(example = "[\"1232414\",\76948693\"]")
+    private Set<PhoneDTO> phones = new HashSet<>();
+    @Schema(example = "[\"svimming\",\"bowling\"]")
+    private Set<HobbyDTO> hobbies = new HashSet<>();
 
     public PersonDTO(Person p) {
+        this.id = p.getId();
         this.fName = p.getfName();
         this.lName = p.getlName();
-        this.address = new AddressDTO(p.getAddress());
-        this.phones = new PhonesDTO(p.getPhone());
-        this.hobbies = new HobbiesDTO(p.getHobbies());
+        this.street = p.getAddress().getStreet();
+        this.city = p.getAddress().getCity();
+        this.zip = p.getAddress().getZipCode();
+
+        for (Phone ph : p.getPhone()) {
+            this.phones.add(new PhoneDTO(ph));
+        }
+
+        for (Hobby h : p.getHobbies()) {
+            this.hobbies.add(new HobbyDTO(h));
+        }
+
     }
+
+    public PersonDTO(String fName, String lName, String street, String city, String zip) {
+        this.fName = fName;
+        this.lName = lName;
+        this.street = street;
+        this.city = city;
+        this.zip = zip;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-
     public String getfName() {
         return fName;
     }
-    
-    public PersonDTO() {
-        
-    }
 
-//    public PersonDTO(int id, String fName, String lName, AddressDTO addres, PhonesDTO phone, HobbiesDTO hobbies) {
-//        this.id = id;
-//        this.fName = fName;
-//        this.lName = lName;
-//        this.addres = addres;
-//        this.phone = phone;
-//        this.hobbies = hobbies;
-//    }
+    public PersonDTO() {
+
+    }
 
     public int getId() {
         return id;
@@ -76,28 +90,43 @@ public class PersonDTO {
         this.lName = lName;
     }
 
-
-    public AddressDTO getAddress() {
-        return address;
+    public String getStreet() {
+        return street;
     }
 
-    public void setAddress(AddressDTO address) {
-        this.address = address;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public PhonesDTO getPhones() {
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public Set<PhoneDTO> getPhones() {
         return phones;
     }
 
-    public void setPhones(PhonesDTO phones) {
+    public void setPhones(Set<PhoneDTO> phones) {
         this.phones = phones;
     }
 
-    public HobbiesDTO getHobbies() {
+    public Set<HobbyDTO> getHobbies() {
         return hobbies;
     }
 
-    public void setHobbies(HobbiesDTO hobbies) {
+    public void setHobbies(Set<HobbyDTO> hobbies) {
         this.hobbies = hobbies;
     }
 

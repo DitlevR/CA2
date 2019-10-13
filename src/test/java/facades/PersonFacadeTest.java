@@ -180,46 +180,42 @@ public class PersonFacadeTest {
 
     @Test
     public void getHobbiesFromPhoneTest() {
-List<Hobby> all = facade.getHobbiesFromPhone("12345678");
+        List<Hobby> all = facade.getHobbiesFromPhone("12345678");
         assertEquals(2, all.size());
     }
 
     @Test
     public void getPersonsWithHobby() {
-List<Person> withHobby = facade.getPersonsWithHobby("Svømning");
+        List<Person> withHobby = facade.getPersonsWithHobby("Svømning");
         assertEquals(4, all.size());
 
     }
 
-    @Disabled
     @Test
     public void countPersonWithHobbyTest() {
-int count = (int) facade.countPersonsWithHobby("Svømning");
-        assertEquals(1, count);
+
+        long count = facade.countPersonsWithHobby("Svømning");
+        assertEquals(2, count);
     }
 
     @Test
     public void getAllZipcodesTest() {
-List<Address> all = facade.getAllZipcodes();
+        List<Address> all = facade.getAllZipcodes();
         assertEquals(4, all.size());
     }
-//
-//    @Test
-//    public void editPersonTest() {
-//
-//    }
-//
-//    @Test
-//    public void testAddPerson() throws MissingInputException {
-//        Person person = facade.addPerson("Test", "Test", "Testvej", "TestBy", "1234");
-//
-//        Assertions.assertNotNull(person);
-//
-//    }
+
+
+    @Test
+    public void testAddPerson() throws MissingInputException {
+        Person person = facade.addPerson("Test", "Test", "Testvej", "TestBy", "1234");
+
+        Assertions.assertNotNull(person);
+
+    }
 
     @Disabled
     @Test
-    public void deletePersonDontExistTest() throws PersonNotFoundException {
+    public void deletePersonTest() throws PersonNotFoundException {
         facade.deletePerson(p1.getId());
         assertEquals(3, facade.getAllPersons().size());
 

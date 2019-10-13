@@ -162,11 +162,14 @@ public class PersonFacade implements PersonInterface {
             if (p == null) {
                 throw new PersonNotFoundException("Person doesn't exist");
             }
-            Query query = em.createQuery("select p FROM Phone p where p.Person_id = : number");
+            //Query query = em.createQuery("select p FROM Phone p where p.Person_id = : number").setParameter("number", id);
+            
+            
+            Query query = em.createQuery("DELETE FROM Phone p WHERE p.id= :number ");
+            
             query.setParameter("number", id);
-            List<Phone> allPhones = query.getResultList();
-            System.out.println(allPhones);
-
+            int rowDeleted = query.executeUpdate();
+            System.out.println(rowDeleted);
             em.remove(p);
             em.getTransaction().commit();
             return p;
@@ -177,13 +180,13 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public Person addPerson(PersonDTO dto) throws MissingInputException {
+    public Person addPerson(String fname, String lname, String street, String zip, String city) throws MissingInputException {
         EntityManager em = emf.createEntityManager();
-        if (dto.getfName() == null || dto.getlName() == null || dto.getfName() == "" || dto.getlName() == "") {
+        if (fname== null || lname == null || lname == "" || fname == "") {
             throw new MissingInputException("Missing input");
         }
-        Person person = new Person("", dto.getfName(), dto.getlName());
-        Address address = new Address(dto.getAddress().getStreet(), "", dto.getAddress().getZip(), dto.getAddress().getCity());
+        Person person = new Person("", fname, lname);
+        Address address = new Address(street, "", zip, city);
         person.setA(address);
 
         int id = 0;
