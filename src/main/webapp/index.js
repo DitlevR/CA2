@@ -5,8 +5,8 @@ document.getElementById("getHobbies").addEventListener("click", getHobbies);
 document.getElementById("cleanIdInput").addEventListener("click", cleanIdInput);
 document.getElementById("clearHobbies").addEventListener("click", cleanAllHobbies)
 
-//let allUrl = "http://idon.dk/ca2/api/person/all";
-let allUrl = "http://localhost:8080/CA2/api/person/";
+let allUrl = "http://idon.dk/ca2/api/person/all";
+//let allUrl = "http://localhost:8080/CA2/api/person/";
 
 
 //const returnSpecificPersons = document.getElementById("specificPerson");
@@ -101,6 +101,12 @@ const fNameNewPerson = document.getElementById("fnameInput");
 const lNameNewPerson = document.getElementById("lnameInput");
 const emailNewPerson = document.getElementById("emailInput");
 const addressIdPerson = document.getElementById("addressIdInput");
+
+console.log(fNameNewPerson);
+console.log(fNameNewPerson);
+console.log(emailNewPerson);
+console.log(addressIdPerson);
+
 function addUser() {
     const data = { 
         fName: fNameNewPerson.value,
@@ -114,6 +120,8 @@ function addUser() {
         method: "POST",
         mode: "cors"
     };
+    
+    
 
     fetch(allUrl + "/add/" + addressIdPerson, other_params)
             .then( function (response) {
@@ -128,6 +136,7 @@ function addUser() {
        // document.getElementById("messege").innerHTML = error.message;
        console.log(error)
     });
+     console.log(allUrl + "/add/" + addressIdPerson + other_params)
     return true;
 
 
