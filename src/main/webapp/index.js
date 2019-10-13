@@ -115,8 +115,8 @@ function addUser() {
         mode: "cors"
     };
 
-    fetch(allUrl + "/add/" + addressIdPerson, other_params
-            .then(function (response) {
+    fetch(allUrl + "/add/" + addressIdPerson, other_params)
+            .then( function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
@@ -127,7 +127,7 @@ function addUser() {
     }).catch(function (error) {
        // document.getElementById("messege").innerHTML = error.message;
        console.log(error)
-    }));
+    });
     return true;
 
 
