@@ -109,20 +109,20 @@ console.log(addressIdPerson);
 
 function addUser() {
     const data = { 
-        fName: fNameNewPerson.value,
-        lName: lNameNewPerson.value,
-        email: emailNewPerson.value
+        "fName": fNameNewPerson.value.toString(),
+        "lName": lNameNewPerson.value.toString(),
+        "email": emailNewPerson.value.toString()
     };
-
+    
     const other_params = {
         headers: {"content-type": "application/json; charset=UTF-8"},
-        body: data,
+        body: JSON.stringify(data),
         method: "POST",
         mode: "cors"
     };
     
     
-console.log("fname " + data.fName);
+console.log(data.toString());
 console.log(other_params);
 
 
