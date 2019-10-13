@@ -97,7 +97,8 @@ const fNameNewPerson = document.getElementById("fnameInput");
 const lNameNewPerson = document.getElementById("lnameInput");
 const emailNewPerson = document.getElementById("emailInput");
 const addressIdPerson = document.getElementById("addressIdInput");
-function addPerson() {
+
+//function addPerson() {
 //    const data = {
 //        fName: fNameNewPerson.value,
 //        lName: lNameNewPerson.value,
@@ -111,6 +112,18 @@ function addPerson() {
 //        mode: "cors"
 //    };
 
+console.log(fNameNewPerson);
+console.log(fNameNewPerson);
+console.log(emailNewPerson);
+console.log(addressIdPerson);
+
+function addUser() {
+    const data = { 
+        fName: fNameNewPerson.value,
+        lName: lNameNewPerson.value,
+        email: emailNewPerson.value
+    };
+
         let other_params = {
         method: "POST",
         headers: {
@@ -123,22 +136,34 @@ function addPerson() {
             email: emailNewPerson.value
         }
     };
+    
+    
+console.log("fname " + data.fName);
+console.log(other_params);
 
-    fetch(allUrl + "add/" + addressIdPerson, other_params);
-//            .then(function (data) {
-//                document.getElementById("messege1").innerHTML = data.encoded;
-//            }).catch(function (error) {
-//        document.getElementById("messege2").innerHTML = error.message;
-//    });
-    
-    document.getElementById("fnameInput").value = "";
-    document.getElementById("lnameInput").value = "";
-    document.getElementById("addressIdInput").value = "";
-    document.getElementById("emailInput").value = "";
-    
-    //return true;
+//    fetch(allUrl + "add/" + addressIdPerson, other_params);
+////            .then(function (data) {
+////                document.getElementById("messege1").innerHTML = data.encoded;
+////            }).catch(function (error) {
+////        document.getElementById("messege2").innerHTML = error.message;
+////    });
+//    
+//    document.getElementById("fnameInput").value = "";
+//    document.getElementById("lnameInput").value = "";
+//    document.getElementById("addressIdInput").value = "";
+//    document.getElementById("emailInput").value = "";
+//    
+//    //return true;
+//}
+
+    fetch(allUrl + "add/" + addressIdPerson.value, other_params)
+    .catch(function (error) {
+       // document.getElementById("messege").innerHTML = error.message;
+       console.log(error);
+    });
+     console.log(allUrl + "add/" + addressIdPerson + other_params)
+    return true;
 }
-
 
 
 
