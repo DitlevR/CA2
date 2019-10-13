@@ -1,8 +1,9 @@
 document.getElementById("getSCRUM").addEventListener("click", showSprints);
 document.getElementById("getAPIDescription").addEventListener("click", showAPIDescription);
+document.getElementById("clearAllPersonsButton").addEventListener("click", cleanAllPersons);
 
 //let allUrl = "http://idon.dk/ca2/api/person/all";
-let allUrl = "http://localhost:8080/jpareststarter/api/person/all";
+let allUrl = "http://localhost:8080/CA2/api/person/";
 
 
 //const returnSpecificPersons = document.getElementById("specificPerson");
@@ -10,7 +11,7 @@ const getIdInput = document.getElementById("inputId");
 document.getElementById("specificPersonButton").addEventListener("click", getPersonById);
 function getPersonById() {
     var specificPerson;
-    fetch(allUrl + "/" + getIdInput.value).then(res => res.json())
+    fetch(allUrl + getIdInput.value).then(res => res.json())
             .then(person => {
                 specificPerson =
                         "<tr><td>" + person.id + "</td>" +
@@ -34,17 +35,21 @@ function cleanIdInput() {
     document.getElementById("onePerson").innerHTML = "";
     document.getElementById("inputId").value = "";
 }
+function cleanAllPersons() {
+    document.getElementById("allPersons").innerHTML = "";
+};
 
 document.getElementById("allPersonsButton").addEventListener("click", allPersons);
 function allPersons() {
-    var persons;
-    fetch(allUrl).then(res => res.json())
+    fetch(allUrl + "all").then(res => res.json())
             .then(data => {
-                persons = data.map(person =>
-                    "<tr><td>" + person.id + "</td>" +
-                            "<td>" + person.fName + "</td>" +
-                            "<td>" + person.lName + "</td>" +
-                            "<td>" + person.email + "</td></tr>");
+                var persons = data.all.map(persons =>
+                    "<tr><td>" + persons.id + "</td>" +
+                            "<td>" + persons.fName + "</td>" +
+                            "<td>" + persons.lName + "</td>");
+//                            "<td>" + persons.email + "</td></tr>");
+            
+                    
 
                 var personList = persons.join("");
                 document.getElementById("allPersons").innerHTML =
@@ -52,7 +57,7 @@ function allPersons() {
                         "<th>Person id</th>" +
                         "<th>Person fName</th>" +
                         "<th>Person lName</th>" +
-                        "<th>Email</th>" +
+//                        "<th>Email</th>" +
                         "</tr>" +
                         personList;
             });
