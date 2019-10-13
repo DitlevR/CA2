@@ -3,7 +3,7 @@ document.getElementById("getAPIDescription").addEventListener("click", showAPIDe
 document.getElementById("clearAllPersonsButton").addEventListener("click", cleanAllPersons);
 document.getElementById("getHobbies").addEventListener("click", getHobbies);
 document.getElementById("cleanIdInput").addEventListener("click", cleanIdInput);
-document.getElementById("clearHobbies").addEventListener("click", cleanAllHobbies )
+document.getElementById("clearHobbies").addEventListener("click", cleanAllHobbies)
 
 //let allUrl = "http://idon.dk/ca2/api/person/all";
 let allUrl = "http://localhost:8080/CA2/api/person/";
@@ -50,9 +50,9 @@ function getHobbies() {
                     "<tr><td>" + hobby.id + "</td>" +
                             "<td>" + hobby.name + "</td>" +
                             "<td>" + hobby.description + "</td>")
-                
-        
-         var hobbyList = hobbies.join("");
+
+
+                var hobbyList = hobbies.join("");
                 document.getElementById("allHobbies").innerHTML =
                         "<tr>" +
                         "<th>hobby id</th>" +
@@ -79,8 +79,8 @@ function allPersons() {
                     "<tr><td>" + person.id + "</td>" +
                             "<td>" + person.fName + "</td>" +
                             "<td>" + person.lName + "</td>" +
-                            "<td>" + person.email + "</td></tr>")                                
-                               
+                            "<td>" + person.email + "</td></tr>")
+
 
 
 
@@ -102,25 +102,74 @@ const lNameNewPerson = document.getElementById("lnameInput");
 const emailNewPerson = document.getElementById("emailInput");
 const addressIdPerson = document.getElementById("addressIdInput");
 function addUser() {
-    let newPerson = {
+    const newPerson = { body: JSON.stringify({
+        fName: fNameNewPerson.value,
+        lName: lNameNewPerson.value,
+        email: emailNewPerson.value
+    })};
+
+    const other_params = {
+        headers: {"content-type": "application/json; charset=UTF-8"},
+        body: data,
         method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            fName: fNameNewPerson.value,
-            lName: lNameNewPerson.value,
-            email: emailNewPerson.value
-        })
+        mode: "cors"
     };
 
-    fetch(allUrl + "add/" + addressIdPerson, newPerson);
-    document.getElementById("fnameInput").value = "";
-    document.getElementById("lnameInput").value = "";
-    document.getElementById("addressIdInput").value = "";
-    document.getElementById("emailInput").value = "";
+    fetch(allUrl, other_params)
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Could not reach the API: " + response.statusText);
+                }
+            }).then(function (data) {
+        document.getElementById("message").innerHTML = data.encoded;
+    }).catch(function (error) {
+        document.getElementById("message").innerHTML = error.message;
+    });
+    return true;
+
+
+//    let newPerson = {
+//        method: "POST",
+//        headers: {
+//            'Accept': 'application/json',
+//            'Content-Type': 'application/json'
+//        },
+//        body: JSON.stringify({
+//            fName: fNameNewPerson.value,
+//            lName: lNameNewPerson.value,
+//            email: emailNewPerson.value
+//        })
+//    };
+
+//    fetch(allUrl + "add/" + addressIdPerson, newPerson);
+//    document.getElementById("fnameInput").value = "";
+//    document.getElementById("lnameInput").value = "";
+//    document.getElementById("addressIdInput").value = "";
+//    document.getElementById("emailInput").value = "";
 }
+
+const other_params = {
+    headers: {"content-type": "application/json; charset=UTF-8"},
+    body: data,
+    method: "POST",
+    mode: "cors"
+};
+
+fetch(url, other_params)
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Could not reach the API: " + response.statusText);
+            }
+        }).then(function (data) {
+    document.getElementById("message").innerHTML = data.encoded;
+}).catch(function (error) {
+    document.getElementById("message").innerHTML = error.message;
+});
+return true;
 
 function showSprints() {
     document.getElementById("root").innerHTML =
