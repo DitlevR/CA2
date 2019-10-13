@@ -95,7 +95,10 @@ public class PersonResource {
     public String savePerson(String person) throws MissingInputException {
         PersonDTO persondto = GSON.fromJson(person, PersonDTO.class);
 
-        Person added = FACADE.addPerson(persondto);
+        Person added = FACADE.addPerson(persondto.getfName(),
+                persondto.getlName(), persondto.getAddress().
+                getStreet(), persondto.getAddress().getZip(),
+                persondto.getAddress().getCity());
         return GSON.toJson(new PersonDTO(added));
     }
 

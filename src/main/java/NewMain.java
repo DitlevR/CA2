@@ -5,6 +5,7 @@ import entities.Address;
 import entities.Hobby;
 import entities.Person;
 import entities.Phone;
+import errorhandling.PersonNotFoundException;
 import facades.PersonFacade;
 import java.util.List;
 import java.util.stream.DoubleStream;
@@ -41,7 +42,7 @@ public class NewMain {
 
     public static final PersonFacade FACADE = PersonFacade.getFacadeExample(EMF);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PersonNotFoundException {
 //        Persistence.generateSchema("pu", null);
         EntityManager em = EMF.createEntityManager();
         
@@ -182,6 +183,7 @@ public class NewMain {
         System.out.println(FACADE.getAllZipcodes());
         System.out.println(FACADE.countPersonsWithHobby("Sang"));
         System.out.println(FACADE.getAddresFromPhone("12345678"));
+        System.out.println(FACADE.deletePerson(2));
 
 //        em.getTransaction().begin();
 //        Query query = em.createQuery("select p FROM Phone p WHERE p.id = : number", Phone.class);
