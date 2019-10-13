@@ -74,7 +74,9 @@ public class PersonFacade implements PersonInterface {
 
         try {
             em.getTransaction().begin(); //"select h from Hobby h JOIN FETCH h.persons p WHERE h.name = :name"
-            List<Hobby> hobbiesFromPhone = em.createQuery("select distinct h from Hobby h JOIN FETCH h.persons p JOIN FETCH p.phones ph WHERE ph.number = :number").setParameter("number", phone).getResultList();
+            List<Hobby> hobbiesFromPhone = em.createQuery(
+                    "select distinct h from Hobby h JOIN FETCH h.persons p JOIN FETCH p.phones ph WHERE ph.number = :number").setParameter(
+                            "number", phone).getResultList();
             return hobbiesFromPhone;
         } finally {
             em.close();
@@ -87,7 +89,9 @@ public class PersonFacade implements PersonInterface {
 
         try {
             em.getTransaction().begin(); //"select h from Hobby h JOIN FETCH h.persons p WHERE h.name = :name"
-            List<Person> allPersonWithHobby = em.createQuery("select p from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter("name", hobby).getResultList();
+            List<Person> allPersonWithHobby = em.createQuery(
+                    "select p from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter(
+                            "name", hobby).getResultList();
             return allPersonWithHobby;
         } finally {
             em.close();
@@ -101,7 +105,9 @@ public class PersonFacade implements PersonInterface {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            List<Person> personWithZip = em.createQuery("Select p from Person p JOIN p.a a WHERE a.zipCode = :zip").setParameter("zip", zip).getResultList();
+            List<Person> personWithZip = em.createQuery(
+                    "Select p from Person p JOIN p.a a WHERE a.zipCode = :zip").setParameter(
+                            "zip", zip).getResultList();
             return personWithZip;
         } finally {
             em.close();
@@ -114,7 +120,9 @@ public class PersonFacade implements PersonInterface {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            long count = (long)em.createQuery("select COUNT(p) from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter("name", hobby).getSingleResult();
+            long count = (long) em.createQuery(
+                    "select COUNT(p) from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter(
+                            "name", hobby).getSingleResult();
             return count;
         } finally {
             em.close();
@@ -126,7 +134,8 @@ public class PersonFacade implements PersonInterface {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            List<Address> allCities = em.createQuery("Select a from Address a", Address.class).getResultList();
+            List<Address> allCities = em.createQuery("Select a from Address a",
+                    Address.class).getResultList();
             em.getTransaction().commit();
             System.out.println(allCities);
             return allCities;
@@ -163,10 +172,10 @@ public class PersonFacade implements PersonInterface {
                 throw new PersonNotFoundException("Person doesn't exist");
             }
             //Query query = em.createQuery("select p FROM Phone p where p.Person_id = : number").setParameter("number", id);
-            
-            
-            Query query = em.createQuery("DELETE FROM Phone p WHERE p.id= :number ");
-            
+
+            Query query = em.createQuery(
+                    "DELETE FROM Phone p WHERE p.id= :number ");
+
             query.setParameter("number", id);
             int rowDeleted = query.executeUpdate();
             System.out.println(rowDeleted);
@@ -180,9 +189,10 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public Person addPerson(String fname, String lname, String street, String zip, String city) throws MissingInputException {
+    public Person addPerson(String fname, String lname, String street,
+            String zip, String city) throws MissingInputException {
         EntityManager em = emf.createEntityManager();
-        if (fname== null || lname == null || lname == "" || fname == "") {
+        if (fname == null || lname == null || lname == "" || fname == "") {
             throw new MissingInputException("Missing input");
         }
         Person person = new Person("", fname, lname);
@@ -208,7 +218,8 @@ public class PersonFacade implements PersonInterface {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            List<Person> all = em.createQuery("select p from Person p", Person.class).getResultList();
+            List<Person> all = em.createQuery("select p from Person p",
+                    Person.class).getResultList();
             return all;
         } finally {
             em.close();
@@ -224,6 +235,19 @@ public class PersonFacade implements PersonInterface {
             em.getTransaction().commit();
             return person;
 
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Hobby> getAllHobbies() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            List<Hobby> all = em.createQuery("select h from Hobby h",
+                    Hobby.class).getResultList();
+            return all;
         } finally {
             em.close();
         }

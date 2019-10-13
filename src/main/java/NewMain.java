@@ -185,13 +185,14 @@ public class NewMain {
 //        System.out.println(FACADE.countPersonsWithHobby("Sang"));
 //        System.out.println(FACADE.getAddresFromPhone("12345678"));
 //        System.out.println(FACADE.deletePerson(2));
-        List<Person> persons = FACADE.getAllPersons();
-         List<PersonDTO> dtos = new ArrayList();
-        
-        for(Person p : persons) {
-            dtos.add(new PersonDTO(p));
-        }
-        System.out.println(dtos.toArray());
+//        List<Person> persons = FACADE.getAllPersons();
+//         List<PersonDTO> dtos = new ArrayList();
+//        
+//        for(Person p : persons) {
+//            dtos.add(new PersonDTO(p));
+//        }
+//        System.out.println(dtos.toArray());
+            System.out.println(FACADE.getAllHobbies());
 
     }
 }

@@ -39,6 +39,8 @@ public interface PersonInterface {
     public List<Person> getAllPersons();
     
     public Person getPersonFromID(int id) throws PersonNotFoundException;
+     
+    public List<Hobby> getAllHobbies();
        
     
     

@@ -11,6 +11,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.AddressDTO;
 import dto.HobbiesDTO;
+import dto.HobbyDTO;
+import entities.Hobby;
 import errorhandling.PersonNotFoundException;
 import utils.EMF_Creator;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -101,7 +103,6 @@ public class PersonResource {
 //                persondto.getAddress().getCity());
 //        return GSON.toJson(new PersonDTO(added));
 //    }
-
     @Path("all")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -113,9 +114,7 @@ public class PersonResource {
                 @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "The Requested Movie"),
                 @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Movie not found")})
     public String allPersons() {
-        
-        
-            
+
         return GSON.toJson(new PersonsDTO(FACADE.getAllPersons()));
     }
 
@@ -173,6 +172,21 @@ public class PersonResource {
             allDTO.add(new AddressDTO(a));
         }
         return GSON.toJson(allDTO);
+    }
+
+    @Path("allHobby")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Operation(summary = "Get all Hobbies",
+            tags = {"Hobbies"},
+            responses = {
+                @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = PersonDTO.class))),
+                @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "The Requested Movie"),
+                @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Movie not found")})
+    public String allHobbies() {
+
+        return GSON.toJson(new HobbiesDTO( FACADE.getAllHobbies()));
     }
 
 }

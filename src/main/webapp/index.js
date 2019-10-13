@@ -1,6 +1,9 @@
 document.getElementById("getSCRUM").addEventListener("click", showSprints);
 document.getElementById("getAPIDescription").addEventListener("click", showAPIDescription);
 document.getElementById("clearAllPersonsButton").addEventListener("click", cleanAllPersons);
+document.getElementById("getHobbies").addEventListener("click", getHobbies);
+document.getElementById("cleanIdInput").addEventListener("click", cleanIdInput);
+document.getElementById("clearHobbies").addEventListener("click", cleanAllHobbies )
 
 //let allUrl = "http://idon.dk/ca2/api/person/all";
 let allUrl = "http://localhost:8080/CA2/api/person/";
@@ -30,14 +33,43 @@ function getPersonById() {
             });
 }
 
-document.getElementById("cleanIdInput").addEventListener("click", cleanIdInput);
+
 function cleanIdInput() {
     document.getElementById("onePerson").innerHTML = "";
     document.getElementById("inputId").value = "";
 }
+
+function cleanAllHobbies() {
+    document.getElementById("allHobbies").innerHTML = "";
+}
+
+function getHobbies() {
+    fetch(allUrl + "allHobby").then(res => res.json())
+            .then(data => {
+                var hobbies = data.all.map(hobby =>
+                    "<tr><td>" + hobby.id + "</td>" +
+                            "<td>" + hobby.name + "</td>" +
+                            "<td>" + hobby.description + "</td>")
+                
+        
+         var hobbyList = hobbies.join("");
+                document.getElementById("allHobbies").innerHTML =
+                        "<tr>" +
+                        "<th>hobby id</th>" +
+                        "<th>hobby name</th>" +
+                        "<th>hobby description</th>" +
+//                        "<th>Email</th>" +
+                        "</tr>" +
+                        hobbyList;
+            })
+}
+
+
+
 function cleanAllPersons() {
     document.getElementById("allPersons").innerHTML = "";
-};
+}
+;
 
 document.getElementById("allPersonsButton").addEventListener("click", allPersons);
 function allPersons() {
@@ -48,8 +80,8 @@ function allPersons() {
                             "<td>" + person.fName + "</td>" +
                             "<td>" + person.lName + "</td>");
 //                            "<td>" + persons.email + "</td></tr>");
-            
-                    
+
+
 
                 var personList = persons.join("");
                 document.getElementById("allPersons").innerHTML =
