@@ -194,6 +194,6 @@ public class NewMain {
 //        }
 //        System.out.println(dtos.toArray());
 
-            System.out.println(FACADE.getAllHobbies());
+            System.out.println(FACADE.getAllZipcodes());
     }
 }

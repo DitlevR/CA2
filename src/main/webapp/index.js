@@ -3,7 +3,9 @@ document.getElementById("getAPIDescription").addEventListener("click", showAPIDe
 document.getElementById("clearAllPersonsButton").addEventListener("click", cleanAllPersons);
 document.getElementById("getHobbies").addEventListener("click", getHobbies);
 document.getElementById("cleanIdInput").addEventListener("click", cleanIdInput);
-document.getElementById("clearHobbies").addEventListener("click", cleanAllHobbies)
+document.getElementById("clearHobbies").addEventListener("click", cleanAllHobbies);
+document.getElementById("clearAllZip").addEventListener("click", cleanAllZip);
+document.getElementById("getAllZip").addEventListener("click", getAllZip);
 
 //let allUrl = "http://idon.dk/ca2/api/person/all";
 let allUrl = "http://localhost:8080/CA2/api/person/";
@@ -65,6 +67,35 @@ function getHobbies() {
 }
 
 
+
+
+function cleanAllZip() {
+    document.getElementById("allZips").innerHTML = "";
+}
+
+
+function getAllZip() {
+    fetch(allUrl + "allZip").then(res => res.json())
+            .then(data => {
+                var addressses = data.map(address =>
+                    "<tr><td>" + address.id + "</td>" +
+                            "<td>" + address.street + "</td>" +
+                            "<td>" + address.city + "</td>" + 
+                            "<td>" + address.zipcode + "</td>")
+
+
+                var addresssesList = addressses.join("");
+                document.getElementById("allZips").innerHTML =
+                        "<tr>" +
+                        "<th>address id</th>" +
+                        "<th>address additional info</th>" +
+                        "<th>address city</th>" +
+                        "<th>address street</th>" +
+                        "<th>address zipcode</th>" +
+                        "</tr>" +
+                        addresssesList;
+            })
+}
 
 function cleanAllPersons() {
     document.getElementById("allPersons").innerHTML = "";
