@@ -200,7 +200,7 @@ public class PersonFacadeTest {
 
     @Test
     public void getAllZipcodesTest() {
-        List<Address> all = facade.getAllZipcodes();
+        List<Address> all = facade.getAllAddress();
         assertEquals(4, all.size());
     }
 

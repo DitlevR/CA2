@@ -28,7 +28,7 @@ public interface PersonInterface {
     
     public long countPersonsWithHobby(String hobby);
     
-    public List<Address> getAllZipcodes();
+    public List<Address> getAllAddress();
     
     public Person editPerson(Person p) throws PersonNotFoundException;
     

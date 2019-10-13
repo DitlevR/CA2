@@ -15,12 +15,13 @@ public class AddressDTO {
     private String street;
     private String city;
     private String zip;
+    private int id;
     
     public AddressDTO(Address a) {
         this.street = a.getStreet();
         this.city = a.getStreet();
         this.zip = a.getZipCode();
-        
+        this.id = a.getId();
     }
 
     public String getStreet() {

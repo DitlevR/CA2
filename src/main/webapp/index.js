@@ -4,11 +4,11 @@ document.getElementById("clearAllPersonsButton").addEventListener("click", clean
 document.getElementById("getHobbies").addEventListener("click", getHobbies);
 document.getElementById("cleanIdInput").addEventListener("click", cleanIdInput);
 document.getElementById("clearHobbies").addEventListener("click", cleanAllHobbies);
-document.getElementById("clearAllZip").addEventListener("click", cleanAllZip);
-document.getElementById("getAllZip").addEventListener("click", getAllZip);
+document.getElementById("clearAllAddress").addEventListener("click", cleanAllAddress);
+document.getElementById("getAllAddress").addEventListener("click", getAllAddress);
 
-let allUrl = "http://localhost:8080/CA2/api/person/";
-//let allUrl = "idon.dk/CA2/api/person/"
+//let allUrl = "http://localhost:8080/CA2/api/person/";
+let allUrl = "idon.dk/CA2/api/person/";
 
 //const returnSpecificPersons = document.getElementById("specificPerson");
 const getIdInput = document.getElementById("inputId");
@@ -50,7 +50,7 @@ function getHobbies() {
                 var hobbies = data.all.map(hobby =>
                     "<tr><td>" + hobby.id + "</td>" +
                             "<td>" + hobby.name + "</td>" +
-                            "<td>" + hobby.description + "</td>")
+                            "<td>" + hobby.description + "</td>");
 
 
                 var hobbyList = hobbies.join("");
@@ -62,39 +62,35 @@ function getHobbies() {
 //                        "<th>Email</th>" +
                         "</tr>" +
                         hobbyList;
-            })
+            });
 }
 
 
-
-
-
-function cleanAllZip() {
-    document.getElementById("allZips").innerHTML = "";
+function cleanAllAddress() {
+    document.getElementById("allAddress").innerHTML = "";
 }
 
 
-function getAllZip() {
-    fetch(allUrl + "allZip").then(res => res.json())
+function getAllAddress() {
+    fetch(allUrl + "allAddress").then(res => res.json())
             .then(data => {
                 var addressses = data.map(address =>
                     "<tr><td>" + address.id + "</td>" +
                             "<td>" + address.street + "</td>" +
                             "<td>" + address.city + "</td>" + 
-                            "<td>" + address.zipcode + "</td>")
+                            "<td>" + address.zip + "</td>");
 
 
                 var addresssesList = addressses.join("");
-                document.getElementById("allZips").innerHTML =
+                document.getElementById("allAddress").innerHTML =
                         "<tr>" +
                         "<th>address id</th>" +
-                        "<th>address additional info</th>" +
-                        "<th>address city</th>" +
                         "<th>address street</th>" +
+                        "<th>address city</th>" +
                         "<th>address zipcode</th>" +
                         "</tr>" +
                         addresssesList;
-            })
+            });
 }
 
 
@@ -151,18 +147,6 @@ function addPerson() {
 
     console.log(data.toString());
     console.log(other_params);
-
-//    fetch(allUrl + "add/" + addressIdPerson, other_params);
-////            .then(function (data) {
-////                document.getElementById("messege1").innerHTML = data.encoded;
-////            }).catch(function (error) {
-////        document.getElementById("messege2").innerHTML = error.message;
-////    });
-//    
-
-//    
-//    //return true;
-//}
 
     fetch(allUrl + "add/" + addressIdPerson.value, other_params)
             .catch(function (error) {

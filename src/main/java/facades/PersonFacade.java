@@ -132,7 +132,7 @@ public class PersonFacade implements PersonInterface {
     }
 
     @Override
-    public List<Address> getAllZipcodes() {
+    public List<Address> getAllAddress() {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -220,29 +220,6 @@ public class PersonFacade implements PersonInterface {
         return person;
     }
 
-//    @Override
-//    public Person addPerson(String fname, String lname, String street, String zip, String city) throws MissingInputException {
-//        EntityManager em = emf.createEntityManager();
-//        if (fname== null || lname == null || lname == "" || fname == "") {
-//            throw new MissingInputException("Missing input");
-//        }
-//        Person person = new Person("", fname, lname);
-//        Address address = new Address(street, "", zip, city);
-//        person.setA(address);
-//
-//        int id = 0;
-//        try {
-//
-//            em.getTransaction().begin();
-//            em.persist(address);
-//            em.persist(person);
-//            em.getTransaction().commit();
-//
-//        } finally {
-//            em.close();
-//        }
-//        return person;
-//    }
     @Override
     public List<Person> getAllPersons() {
         EntityManager em = emf.createEntityManager();

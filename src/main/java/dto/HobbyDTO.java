@@ -17,10 +17,13 @@ public class HobbyDTO {
     private String name;
     @Schema(required = true, example = "man svømmer")
     private String description;
+    @Schema(required = true, example = "1")
+    private int id;
     
     public HobbyDTO(Hobby h) {
         this.name = h.getName();
         this.description = h.getDescription();
+        this.id = h.getId();
     }
     
     public HobbyDTO(String name, String description) {

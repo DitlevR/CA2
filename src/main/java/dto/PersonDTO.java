@@ -47,7 +47,7 @@ public class PersonDTO {
         this.street = p.getAddress().getStreet();
         this.city = p.getAddress().getCity();
         this.zip = p.getAddress().getZipCode();
-
+        this.email = p.getEmail();
         for (Phone ph : p.getPhone()) {
             this.phones.add(new PhoneDTO(ph));
         }

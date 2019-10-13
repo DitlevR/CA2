@@ -119,10 +119,10 @@ public class PersonResource {
     }
 
     @GET
-    @Path("allZip")
+    @Path("allAddress")
     @Produces({MediaType.APPLICATION_JSON})
     public String allZip() {
-        List<Address> getAll = FACADE.getAllZipcodes();
+        List<Address> getAll = FACADE.getAllAddress();
         List<AddressDTO> allDTO = new ArrayList<>();
         for (Address a : getAll) {
             allDTO.add(new AddressDTO(a));
