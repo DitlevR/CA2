@@ -76,4 +76,29 @@ public class PersonDTO {
         this.lName = lName;
     }
 
+
+    public AddressDTO getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDTO address) {
+        this.address = address;
+    }
+
+    public PhonesDTO getPhones() {
+        return phones;
+    }
+
+    public void setPhones(PhonesDTO phones) {
+        this.phones = phones;
+    }
+
+    public HobbiesDTO getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(HobbiesDTO hobbies) {
+        this.hobbies = hobbies;
+    }
+
 }

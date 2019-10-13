@@ -26,7 +26,7 @@ public interface PersonInterface {
     
     public List<Person> getAllPersonWithZipcode(String zip);
     
-    public Integer countPersonsWithHobby(String hobby);
+    public long countPersonsWithHobby(String hobby);
     
     public List<Address> getAllZipcodes();
     
@@ -34,7 +34,7 @@ public interface PersonInterface {
     
     public Person deletePerson(int id) throws PersonNotFoundException;
     
-    public Person addPerson(String fname, String lname, String street, String city, String zipcode) throws MissingInputException;
+    public Person addPerson(PersonDTO dto) throws MissingInputException;
     
     public List<Person> getAllPersons();
     
