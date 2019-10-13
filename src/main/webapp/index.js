@@ -102,11 +102,11 @@ const lNameNewPerson = document.getElementById("lnameInput");
 const emailNewPerson = document.getElementById("emailInput");
 const addressIdPerson = document.getElementById("addressIdInput");
 function addUser() {
-    const newPerson = { body: JSON.stringify({
+    const data = { 
         fName: fNameNewPerson.value,
         lName: lNameNewPerson.value,
         email: emailNewPerson.value
-    })};
+    };
 
     const other_params = {
         headers: {"content-type": "application/json; charset=UTF-8"},
@@ -115,7 +115,7 @@ function addUser() {
         mode: "cors"
     };
 
-    fetch(allUrl + "/add/" + addressIdPerson, other_params)
+    fetch(allUrl + "/add/" + addressIdPerson, other_params
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
@@ -151,6 +151,7 @@ function addUser() {
 //    document.getElementById("emailInput").value = "";
 }
 
+<<<<<<< HEAD
 const other_params = {
     headers: {"content-type": "application/json; charset=UTF-8"},
     body: data,
@@ -172,6 +173,8 @@ fetch(url, other_params)
 });
 
 
+=======
+>>>>>>> 83fcc92e419c61c15834587528e26e4e305c245d
 function showSprints() {
     document.getElementById("root").innerHTML =
             '<div class="container">' +
