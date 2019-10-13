@@ -79,13 +79,8 @@ function allPersons() {
                     "<tr><td>" + person.id + "</td>" +
                             "<td>" + person.fName + "</td>" +
                             "<td>" + person.lName + "</td>");
-<<<<<<< HEAD
                             "<td>" + persons.email + "</td></tr>");                                
-=======
-//                            "<td>" + persons.email + "</td></tr>");
 
-
->>>>>>> 6067f7dfb0a510a590ea9179cce38a2b584dce29
 
                 var personList = persons.join("");
                 document.getElementById("allPersons").innerHTML =
