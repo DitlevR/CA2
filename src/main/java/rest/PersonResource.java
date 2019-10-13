@@ -189,6 +189,9 @@ public class PersonResource {
         return GSON.toJson(new HobbiesDTO( FACADE.getAllHobbies()));
     }
     
+    @Path("/createData")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
     public String createPersons() {
         EntityManager em = EMF.createEntityManager();
         
