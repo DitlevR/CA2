@@ -37,6 +37,7 @@ public class Person implements Serializable {
     private String fName;
     private String lName;
     private String email;
+    //private int addressId;
 
     @OneToMany(mappedBy = "p", cascade = CascadeType.REMOVE) //hvilken variabel i Phone.java hvert Person object knyttes til
     private List<Phone> phones; //liste som et Person objekt knyttes til
@@ -59,6 +60,7 @@ public class Person implements Serializable {
         this.email = email;
         this.fName = fName;
         this.lName = lName;
+//        this.addressId = AddressId;
     }
 
     public void setHobby(Hobby h) {
@@ -68,6 +70,7 @@ public class Person implements Serializable {
 
     public void setA(Address a) {
         this.a = a;
+//        this.addressId = this.a.getId();
         //a.getPersons().add(this);
     }
 

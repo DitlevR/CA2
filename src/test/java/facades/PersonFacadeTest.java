@@ -207,7 +207,7 @@ public class PersonFacadeTest {
 
     @Test
     public void testAddPerson() throws MissingInputException {
-        Person person = facade.addPerson("Test", "Test", "Testvej", "TestBy", "1234");
+        Person person = facade.addPerson("Test", "Testvej", "TestBy", 1);
 
         Assertions.assertNotNull(person);
 

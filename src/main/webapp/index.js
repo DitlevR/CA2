@@ -47,9 +47,7 @@ function allPersons() {
                     "<tr><td>" + person.id + "</td>" +
                             "<td>" + person.fName + "</td>" +
                             "<td>" + person.lName + "</td>");
-//                            "<td>" + persons.email + "</td></tr>");
-            
-                    
+                            "<td>" + persons.email + "</td></tr>");                                
 
                 var personList = persons.join("");
                 document.getElementById("allPersons").innerHTML =
@@ -57,10 +55,36 @@ function allPersons() {
                         "<th>Person id</th>" +
                         "<th>Person fName</th>" +
                         "<th>Person lName</th>" +
-//                        "<th>Email</th>" +
+                        "<th>Email</th>" +
                         "</tr>" +
                         personList;
             });
+}
+
+document.getElementById("addPersonButton").addEventListener("click", addUser);
+const fNameNewPerson = document.getElementById("fnameInput");
+const lNameNewPerson = document.getElementById("lnameInput");
+const emailNewPerson = document.getElementById("emailInput");
+const addressIdPerson = document.getElementById("addressIdInput");
+function addUser() {
+    let newPerson = {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            fName: fNameNewPerson.value,
+            lName: lNameNewPerson.value,
+            email: emailNewPerson.value
+        })
+    };
+
+    fetch(allUrl + "add/" + addressIdPerson, newPerson);
+    document.getElementById("fnameInput").value = "";
+    document.getElementById("lnameInput").value = "";
+    document.getElementById("addressIdInput").value = "";
+    document.getElementById("emailInput").value = "";
 }
 
 function showSprints() {

@@ -88,19 +88,17 @@ public class PersonResource {
         return GSON.toJson(dto);
     }
 
-//    @POST
-//    @Consumes({MediaType.APPLICATION_JSON})
-//    @Produces({MediaType.APPLICATION_JSON})
-//
-//    public String savePerson(String person) throws MissingInputException {
-//        PersonDTO persondto = GSON.fromJson(person, PersonDTO.class);
-//
-//        Person added = FACADE.addPerson(persondto.getfName(),
-//                persondto.getlName(), persondto.getAddress().
-//                getStreet(), persondto.getAddress().getZip(),
-//                persondto.getAddress().getCity());
-//        return GSON.toJson(new PersonDTO(added));
-//    }
+    @POST
+    @Path("add/{id}")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public String savePerson(@PathParam("id") int id, String person) throws MissingInputException {
+        PersonDTO persondto = GSON.fromJson(person, PersonDTO.class);
+
+        Person added = FACADE.addPerson(persondto.getEmail(), persondto.getfName(),
+                persondto.getlName(), id);
+        return GSON.toJson(new PersonDTO(added));
+    }
 
     @Path("all")
     @GET
