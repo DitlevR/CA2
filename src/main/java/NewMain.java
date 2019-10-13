@@ -194,6 +194,8 @@ public class NewMain {
 //        }
 //        System.out.println(dtos.toArray());
 
-            System.out.println(FACADE.getAllHobbies());
+            //System.out.println(FACADE.getAllHobbies());
+            
+        System.out.println(FACADE.addPerson("mads@hotmail.com", "Mads", "Madsen", 3));
     }
 }
