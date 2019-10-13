@@ -79,7 +79,7 @@ function allPersons() {
                     "<tr><td>" + person.id + "</td>" +
                             "<td>" + person.fName + "</td>" +
                             "<td>" + person.lName + "</td>" +
-                            "<td>" + persons.email + "</td></tr>")                                
+                            "<td>" + person.email + "</td></tr>")                                
 
                 var personList = persons.join("");
                 document.getElementById("allPersons").innerHTML =
