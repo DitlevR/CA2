@@ -191,7 +191,7 @@ public class PersonFacade implements PersonInterface {
 
     public Person addPerson(String email, String fname, String lname, int addressId) throws MissingInputException {
         EntityManager em1 = emf.createEntityManager();
-        if (fname == null || lname == null || lname == "" || fname == "") {
+        if (email == null || fname == null || lname == null || email == "" || lname == "" || fname == "" || addressId == 0) {
             throw new MissingInputException("Missing input");
         }
         Person person = new Person(email, fname, lname);
