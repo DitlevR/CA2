@@ -63,12 +63,9 @@ function getHobbies() {
             })
 }
 
-
-
 function cleanAllPersons() {
     document.getElementById("allPersons").innerHTML = "";
-}
-;
+};
 
 document.getElementById("allPersonsButton").addEventListener("click", allPersons);
 function allPersons() {
@@ -98,50 +95,27 @@ const lNameNewPerson = document.getElementById("lnameInput");
 const emailNewPerson = document.getElementById("emailInput");
 const addressIdPerson = document.getElementById("addressIdInput");
 
-//function addPerson() {
-//    const data = {
-//        fName: fNameNewPerson.value,
-//        lName: lNameNewPerson.value,
-//        email: emailNewPerson.value
-//    };
-//
-//    const other_params = {
-//        headers: {"content-type": "application/json; charset=UTF-8"},
-//        body: data,
-//        method: "POST",
-//        mode: "cors"
-//    };
-
 console.log(fNameNewPerson);
 console.log(fNameNewPerson);
 console.log(emailNewPerson);
 console.log(addressIdPerson);
 
-function addUser() {
-    const data = { 
+function addPerson() {
+    const data = {
         "fName": fNameNewPerson.value.toString(),
         "lName": lNameNewPerson.value.toString(),
         "email": emailNewPerson.value.toString()
     };
-    
+
     const other_params = {
         headers: {"content-type": "application/json; charset=UTF-8"},
         body: JSON.stringify(data),
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: {
-            fName: fNameNewPerson.value,
-            lName: lNameNewPerson.value,
-            email: emailNewPerson.value
-        }
+        method: "POST"
     };
-    
-    
-console.log(data.toString());
-console.log(other_params);
+
+
+    console.log(data.toString());
+    console.log(other_params);
 
 //    fetch(allUrl + "add/" + addressIdPerson, other_params);
 ////            .then(function (data) {
@@ -150,20 +124,23 @@ console.log(other_params);
 ////        document.getElementById("messege2").innerHTML = error.message;
 ////    });
 //    
-//    document.getElementById("fnameInput").value = "";
-//    document.getElementById("lnameInput").value = "";
-//    document.getElementById("addressIdInput").value = "";
-//    document.getElementById("emailInput").value = "";
+
 //    
 //    //return true;
 //}
 
     fetch(allUrl + "add/" + addressIdPerson.value, other_params)
-    .catch(function (error) {
-       // document.getElementById("messege").innerHTML = error.message;
-       console.log(error);
-    });
-     console.log(allUrl + "add/" + addressIdPerson + other_params)
+            .catch(function (error) {
+                // document.getElementById("messege").innerHTML = error.message;
+                console.log(error);
+            });
+    console.log(allUrl + "add/" + addressIdPerson + other_params);
+
+    document.getElementById("fnameInput").value = "";
+    document.getElementById("lnameInput").value = "";
+    document.getElementById("addressIdInput").value = "";
+    document.getElementById("emailInput").value = "";
+
     return true;
 }
 
