@@ -80,6 +80,9 @@ function allPersons() {
                             "<td>" + person.fName + "</td>" +
                             "<td>" + person.lName + "</td>" +
                             "<td>" + person.email + "</td></tr>")                                
+                               
+
+
 
                 var personList = persons.join("");
                 document.getElementById("allPersons").innerHTML =
