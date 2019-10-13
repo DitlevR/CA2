@@ -5,8 +5,8 @@ document.getElementById("getHobbies").addEventListener("click", getHobbies);
 document.getElementById("cleanIdInput").addEventListener("click", cleanIdInput);
 document.getElementById("clearHobbies").addEventListener("click", cleanAllHobbies)
 
-let allUrl = "http://idon.dk/ca2/api/person/all";
-//let allUrl = "http://localhost:8080/CA2/api/person/";
+//let allUrl = "http://idon.dk/ca2/api/person/all";
+let allUrl = "http://localhost:8080/CA2/api/person/";
 
 
 //const returnSpecificPersons = document.getElementById("specificPerson");
@@ -122,21 +122,16 @@ function addUser() {
     };
     
     
+console.log("fname " + data.fName);
+console.log(other_params);
 
-    fetch(allUrl + "/add/" + addressIdPerson, other_params)
-            .then( function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error("Error" + response.statusText);
-                }
-            }).then(function (data) {
-        document.getElementById("messege").innerHTML = data.encoded;
-    }).catch(function (error) {
+
+    fetch(allUrl + "add/" + addressIdPerson.value, other_params)
+    .catch(function (error) {
        // document.getElementById("messege").innerHTML = error.message;
        console.log(error)
     });
-     console.log(allUrl + "/add/" + addressIdPerson + other_params)
+     console.log(allUrl + "add/" + addressIdPerson + other_params)
     return true;
 
 
