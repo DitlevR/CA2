@@ -119,12 +119,14 @@ console.log(addressIdPerson);
 
 function addUser() {
     const data = { 
-        fName: fNameNewPerson.value,
-        lName: lNameNewPerson.value,
-        email: emailNewPerson.value
+        "fName": fNameNewPerson.value.toString(),
+        "lName": lNameNewPerson.value.toString(),
+        "email": emailNewPerson.value.toString()
     };
-
-        let other_params = {
+    
+    const other_params = {
+        headers: {"content-type": "application/json; charset=UTF-8"},
+        body: JSON.stringify(data),
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -138,7 +140,7 @@ function addUser() {
     };
     
     
-console.log("fname " + data.fName);
+console.log(data.toString());
 console.log(other_params);
 
 //    fetch(allUrl + "add/" + addressIdPerson, other_params);
