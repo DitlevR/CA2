@@ -127,7 +127,7 @@ function addUser() {
     }).catch(function (error) {
        // document.getElementById("messege").innerHTML = error.message;
        console.log(error)
-    });
+    }));
     return true;
 
 
@@ -151,30 +151,8 @@ function addUser() {
 //    document.getElementById("emailInput").value = "";
 }
 
-<<<<<<< HEAD
-const other_params = {
-    headers: {"content-type": "application/json; charset=UTF-8"},
-    body: data,
-    method: "POST",
-    mode: "cors"
-};
-
-fetch(url, other_params)
-        .then(function (response) {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("Could not reach the API: " + response.statusText);
-            }
-        }).then(function (data) {
-    document.getElementById("message").innerHTML = data.encoded;
-}).catch(function (error) {
-    document.getElementById("message").innerHTML = error.message;
-});
 
 
-=======
->>>>>>> 83fcc92e419c61c15834587528e26e4e305c245d
 function showSprints() {
     document.getElementById("root").innerHTML =
             '<div class="container">' +
