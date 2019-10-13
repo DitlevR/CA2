@@ -7,9 +7,8 @@ document.getElementById("clearHobbies").addEventListener("click", cleanAllHobbie
 document.getElementById("clearAllZip").addEventListener("click", cleanAllZip);
 document.getElementById("getAllZip").addEventListener("click", getAllZip);
 
-//let allUrl = "http://idon.dk/ca2/api/person/all";
 let allUrl = "http://localhost:8080/CA2/api/person/";
-
+//let allUrl = "idon.dk/CA2/api/person/"
 
 //const returnSpecificPersons = document.getElementById("specificPerson");
 const getIdInput = document.getElementById("inputId");
@@ -69,6 +68,7 @@ function getHobbies() {
 
 
 
+
 function cleanAllZip() {
     document.getElementById("allZips").innerHTML = "";
 }
@@ -97,10 +97,10 @@ function getAllZip() {
             })
 }
 
+
 function cleanAllPersons() {
     document.getElementById("allPersons").innerHTML = "";
-}
-;
+};
 
 document.getElementById("allPersonsButton").addEventListener("click", allPersons);
 function allPersons() {
@@ -110,10 +110,7 @@ function allPersons() {
                     "<tr><td>" + person.id + "</td>" +
                             "<td>" + person.fName + "</td>" +
                             "<td>" + person.lName + "</td>" +
-                            "<td>" + person.email + "</td></tr>")
-
-
-
+                            "<td>" + person.email + "</td></tr>");
 
                 var personList = persons.join("");
                 document.getElementById("allPersons").innerHTML =
@@ -124,10 +121,10 @@ function allPersons() {
                         "<th>Email</th>" +
                         "</tr>" +
                         personList;
-            })
+            });
 }
 
-document.getElementById("addPersonButton").addEventListener("click", addUser);
+document.getElementById("addPersonButton").addEventListener("click", addPerson);
 const fNameNewPerson = document.getElementById("fnameInput");
 const lNameNewPerson = document.getElementById("lnameInput");
 const emailNewPerson = document.getElementById("emailInput");
@@ -138,53 +135,50 @@ console.log(fNameNewPerson);
 console.log(emailNewPerson);
 console.log(addressIdPerson);
 
-function addUser() {
-    const data = { 
+function addPerson() {
+    const data = {
         "fName": fNameNewPerson.value.toString(),
         "lName": lNameNewPerson.value.toString(),
         "email": emailNewPerson.value.toString()
     };
-    
+
     const other_params = {
         headers: {"content-type": "application/json; charset=UTF-8"},
         body: JSON.stringify(data),
-        method: "POST",
-        mode: "cors"
+        method: "POST"
     };
-    
-    
-console.log(data.toString());
-console.log(other_params);
 
+
+    console.log(data.toString());
+    console.log(other_params);
+
+//    fetch(allUrl + "add/" + addressIdPerson, other_params);
+////            .then(function (data) {
+////                document.getElementById("messege1").innerHTML = data.encoded;
+////            }).catch(function (error) {
+////        document.getElementById("messege2").innerHTML = error.message;
+////    });
+//    
+
+//    
+//    //return true;
+//}
 
     fetch(allUrl + "add/" + addressIdPerson.value, other_params)
-    .catch(function (error) {
-       // document.getElementById("messege").innerHTML = error.message;
-       console.log(error)
-    });
-     console.log(allUrl + "add/" + addressIdPerson + other_params)
+            .catch(function (error) {
+                // document.getElementById("messege").innerHTML = error.message;
+                console.log(error);
+            });
+    console.log(allUrl + "add/" + addressIdPerson + other_params);
+
+    document.getElementById("fnameInput").value = "";
+    document.getElementById("lnameInput").value = "";
+    document.getElementById("addressIdInput").value = "";
+    document.getElementById("emailInput").value = "";
+
     return true;
-
-
-//    let newPerson = {
-//        method: "POST",
-//        headers: {
-//            'Accept': 'application/json',
-//            'Content-Type': 'application/json'
-//        },
-//        body: JSON.stringify({
-//            fName: fNameNewPerson.value,
-//            lName: lNameNewPerson.value,
-//            email: emailNewPerson.value
-//        })
-//    };
-
-//    fetch(allUrl + "add/" + addressIdPerson, newPerson);
-//    document.getElementById("fnameInput").value = "";
-//    document.getElementById("lnameInput").value = "";
-//    document.getElementById("addressIdInput").value = "";
-//    document.getElementById("emailInput").value = "";
 }
+
 
 
 
