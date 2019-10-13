@@ -110,7 +110,7 @@ function addUser() {
 
     const other_params = {
         headers: {"content-type": "application/json; charset=UTF-8"},
-        body: newPerson,
+        body: data,
         method: "POST",
         mode: "cors"
     };
