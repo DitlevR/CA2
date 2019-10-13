@@ -50,7 +50,7 @@ public class NewMain {
         Person p2 = new Person("heavymetal@outlook.com", "Thorsen", "Odinsen");
         Person p3 = new Person("himmelen@outlook.com", "Iben", "Asgersen");
         Person p4 = new Person("treetrees@hotmail.com", "Benny", "Baldersen");
-        Person p5 = new Person("¯rnen@hotmail.com", "Helge", "Svendsen");
+        Person p5 = new Person("ørnen@hotmail.com", "Helge", "Svendsen");
         Person p6 = new Person("celticpunk@outlook.com", "Thomsen", "Odinsen");
         Person p7 = new Person("jotunheim@outlook.com", "Ibensen", "Asgersen");
         Person p8 = new Person("bushes@hotmail.com", "Soren", "Baldersen");
@@ -72,7 +72,7 @@ public class NewMain {
         Phone ph11 = new Phone("77777777", "Til Thor");
         Phone ph12 = new Phone("88888888", "Til Ly");
 
-        Hobby h1 = new Hobby("Sv¯mning", "man sv¯mmer");
+        Hobby h1 = new Hobby("Svømning", "man svømmer");
         Hobby h2 = new Hobby("Klatring", "man klatrer");
         Hobby h3 = new Hobby("Tegning", "man tegner");
         Hobby h4 = new Hobby("Sang", "man synger");
@@ -125,7 +125,7 @@ public class NewMain {
         p9.setHobby(h3);
         p10.setHobby(h2);
         p12.setHobby(h4);
-        
+
         p7.setHobby(h2);
         p8.setHobby(h1);
         p10.setHobby(h4);
@@ -134,9 +134,8 @@ public class NewMain {
         p8.setHobby(h4);
         p1.setHobby(h4);
 
-        
         em.getTransaction().begin();
-                
+
         em.persist(a1);
         em.persist(a2);
         em.persist(a3);
@@ -158,7 +157,6 @@ public class NewMain {
         em.persist(p10);
         em.persist(p12);
         em.persist(p11);
-        
 
         em.persist(h1);
         em.persist(h2);
@@ -177,7 +175,7 @@ public class NewMain {
         em.persist(ph10);
         em.persist(ph11);
         em.persist(ph12);
-        
+
         em.getTransaction().commit();
         em.close();
         System.out.println(FACADE.getAllZipcodes());
@@ -185,31 +183,5 @@ public class NewMain {
         System.out.println(FACADE.getAddresFromPhone("12345678"));
         System.out.println(FACADE.deletePerson(2));
 
-//        em.getTransaction().begin();
-//        Query query = em.createQuery("select p FROM Phone p WHERE p.id = : number", Phone.class);
-////            query.setParameter("number", 5);
-//
-//            List<Phone> allPhones = query.setParameter("number", 1).getResultList();
-//            em.getTransaction().commit();
-//            System.out.println(allPhones);
-////        System.out.println(FACADE.getAllPersons().size());
-////        System.out.println(FACADE.getAddresFromPhone("12345678"));
-////        System.out.println(FACADE.getPersonsWithHobby("Svømning"));
-////        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
-////        System.out.println(FACADE.getAllPersonWithZipcode("0001"));
-//
-////        System.out.println(FACADE.getHobbiesFromPhone("12345678"));
-////        System.out.println(FACADE.getAllPersonWithZipcode("0001"));
-//
-//
-//        //System.out.println(FACADE.getAllPersonWithZipcode("0001"));
-//        System.out.println(FACADE.getAllZipcodes());
-//        try {
-//            em.getTransaction().begin();
-//            em.getTransaction().commit();
-//        } finally {
-//            em.close();
-//        }
     }
-
 }

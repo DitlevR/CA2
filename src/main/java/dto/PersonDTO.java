@@ -23,6 +23,7 @@ public class PersonDTO {
     private String fName;
     @Schema(required = true, example = "Hansen")
     private String lName;
+
     @Schema(required = true, example = "Vejen 32")
     private AddressDTO address;
     @Schema(required = true, example = "1232414")
@@ -36,7 +37,14 @@ public class PersonDTO {
         this.address = new AddressDTO(p.getAddress());
         this.phones = new PhonesDTO(p.getPhone());
         this.hobbies = new HobbiesDTO(p.getHobbies());
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
+
+    public String getfName() {
+        return fName;
     }
     
     public PersonDTO() {
@@ -56,14 +64,6 @@ public class PersonDTO {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getfName() {
-        return fName;
-    }
-
     public void setfName(String fName) {
         this.fName = fName;
     }
@@ -75,6 +75,7 @@ public class PersonDTO {
     public void setlName(String lName) {
         this.lName = lName;
     }
+
 
     public AddressDTO getAddress() {
         return address;
@@ -100,10 +101,4 @@ public class PersonDTO {
         this.hobbies = hobbies;
     }
 
-   
-    
-
-    
-    
-    
 }
