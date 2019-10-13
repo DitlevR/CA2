@@ -34,7 +34,7 @@ public interface PersonInterface {
     
     public Person deletePerson(int id) throws PersonNotFoundException;
     
-    public Person addPerson(String fname, String lname, String street, String zip, String city) throws MissingInputException;
+    public Person addPerson(String email, String fname, String lname, int addressId) throws MissingInputException;
     
     public List<Person> getAllPersons();
     

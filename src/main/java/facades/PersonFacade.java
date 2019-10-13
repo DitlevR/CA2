@@ -120,6 +120,7 @@ public class PersonFacade implements PersonInterface {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
+
             long count = (long) em.createQuery(
                     "select COUNT(p) from Person p JOIN FETCH p.hobbies h WHERE h.name = :name").setParameter(
                             "name", hobby).getSingleResult();
@@ -188,31 +189,59 @@ public class PersonFacade implements PersonInterface {
 
     }
 
-    @Override
-    public Person addPerson(String fname, String lname, String street,
-            String zip, String city) throws MissingInputException {
-        EntityManager em = emf.createEntityManager();
-        if (fname == null || lname == null || lname == "" || fname == "") {
+    public Person addPerson(String email, String fname, String lname, int addressId) throws MissingInputException {
+        EntityManager em1 = emf.createEntityManager();
+        if (email == null || fname == null || lname == null || email == "" || lname == "" || fname == "" || addressId == 0) {
             throw new MissingInputException("Missing input");
         }
-        Person person = new Person("", fname, lname);
-        Address address = new Address(street, "", zip, city);
-        person.setA(address);
+        Person person = new Person(email, fname, lname);
+        Address address;
 
-        int id = 0;
+        try {
+            em1.getTransaction().begin();
+            address = em1.find(Address.class, addressId);
+            em1.getTransaction().commit();
+        } finally {
+            em1.close();
+        }
+
+        EntityManager em2 = emf.createEntityManager();
+        person.setA(address);
         try {
 
-            em.getTransaction().begin();
-            em.persist(address);
-            em.persist(person);
-            em.getTransaction().commit();
+            em2.getTransaction().begin();
+            em2.persist(person);
+            em2.getTransaction().commit();
 
         } finally {
-            em.close();
+            em2.close();
         }
         return person;
     }
 
+//    @Override
+//    public Person addPerson(String fname, String lname, String street, String zip, String city) throws MissingInputException {
+//        EntityManager em = emf.createEntityManager();
+//        if (fname== null || lname == null || lname == "" || fname == "") {
+//            throw new MissingInputException("Missing input");
+//        }
+//        Person person = new Person("", fname, lname);
+//        Address address = new Address(street, "", zip, city);
+//        person.setA(address);
+//
+//        int id = 0;
+//        try {
+//
+//            em.getTransaction().begin();
+//            em.persist(address);
+//            em.persist(person);
+//            em.getTransaction().commit();
+//
+//        } finally {
+//            em.close();
+//        }
+//        return person;
+//    }
     @Override
     public List<Person> getAllPersons() {
         EntityManager em = emf.createEntityManager();

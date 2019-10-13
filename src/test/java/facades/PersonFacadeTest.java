@@ -193,6 +193,7 @@ public class PersonFacadeTest {
 
     @Test
     public void countPersonWithHobbyTest() {
+
         long count = facade.countPersonsWithHobby("Svømning");
         assertEquals(2, count);
     }
@@ -203,9 +204,10 @@ public class PersonFacadeTest {
         assertEquals(4, all.size());
     }
 
+
     @Test
     public void testAddPerson() throws MissingInputException {
-        Person person = facade.addPerson("Test", "Test", "Testvej", "TestBy", "1234");
+        Person person = facade.addPerson("Test", "Testvej", "TestBy", 1);
 
         Assertions.assertNotNull(person);
 

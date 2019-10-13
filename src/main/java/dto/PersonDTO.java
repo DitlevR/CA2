@@ -21,10 +21,14 @@ import java.util.Set;
 public class PersonDTO {
 
     private int id;
+    @Schema(required = true, example = "email@email.dk")
+    private String email;
     @Schema(required = true, example = "Hans")
     private String fName;
     @Schema(required = true, example = "Hansen")
     private String lName;
+//    @Schema(required = true, example = "1")
+//    private int addressId;
     @Schema(required = true, example = "Bakkevej 32")
     private String street;
     @Schema(required = true, example = "Vejle")
@@ -51,16 +55,22 @@ public class PersonDTO {
         for (Hobby h : p.getHobbies()) {
             this.hobbies.add(new HobbyDTO(h));
         }
-
     }
 
-    public PersonDTO(String fName, String lName, String street, String city, String zip) {
+    public PersonDTO(String email, String fName, String lName) {
+        this.email = email;
         this.fName = fName;
         this.lName = lName;
-        this.street = street;
-        this.city = city;
-        this.zip = zip;
+//        this.addressId = addressId;
     }
+    
+    public String getEmail(){
+        return email;
+    }
+    
+//    public int getAddressId(){
+//        return addressId;
+//    }
 
     public void setId(int id) {
         this.id = id;
