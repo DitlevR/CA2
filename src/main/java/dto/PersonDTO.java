@@ -8,7 +8,7 @@ package dto;
 import entities.Hobby;
 import entities.Person;
 import entities.Phone;
-//import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 
 /**

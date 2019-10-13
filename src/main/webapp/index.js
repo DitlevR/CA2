@@ -1,6 +1,62 @@
 document.getElementById("getSCRUM").addEventListener("click", showSprints);
 document.getElementById("getAPIDescription").addEventListener("click", showAPIDescription);
 
+//let allUrl = "http://idon.dk/ca2/api/person/all";
+let allUrl = "http://localhost:8080/jpareststarter/api/person/all";
+
+
+//const returnSpecificPersons = document.getElementById("specificPerson");
+const getIdInput = document.getElementById("inputId");
+document.getElementById("specificPersonButton").addEventListener("click", getPersonById);
+function getPersonById() {
+    var specificPerson;
+    fetch(allUrl + "/" + getIdInput.value).then(res => res.json())
+            .then(person => {
+                specificPerson =
+                        "<tr><td>" + person.id + "</td>" +
+                        "<td>" + person.fName + "</td>" +
+                        "<td>" + person.lName + "</td>" +
+                        "<td>" + person.email + "</td></tr>";
+
+                document.getElementById("onePerson").innerHTML =
+                        "<tr>" +
+                        "<th>User id</th>" +
+                        "<th>User fName</th>" +
+                        "<th>User lName</th>" +
+                        "<th>Email</th>" +
+                        "</tr>" +
+                        specificPerson;
+            });
+}
+
+document.getElementById("cleanIdInput").addEventListener("click", cleanIdInput);
+function cleanIdInput() {
+    document.getElementById("onePerson").innerHTML = "";
+    document.getElementById("inputId").value = "";
+}
+
+document.getElementById("allPersonsButton").addEventListener("click", allPersons);
+function allPersons() {
+    var persons;
+    fetch(allUrl).then(res => res.json())
+            .then(data => {
+                persons = data.map(person =>
+                    "<tr><td>" + person.id + "</td>" +
+                            "<td>" + person.fName + "</td>" +
+                            "<td>" + person.lName + "</td>" +
+                            "<td>" + person.email + "</td></tr>");
+
+                var personList = persons.join("");
+                document.getElementById("allPersons").innerHTML =
+                        "<tr>" +
+                        "<th>Person id</th>" +
+                        "<th>Person fName</th>" +
+                        "<th>Person lName</th>" +
+                        "<th>Email</th>" +
+                        "</tr>" +
+                        personList;
+            });
+}
 
 function showSprints() {
     document.getElementById("root").innerHTML =
