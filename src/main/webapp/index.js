@@ -43,10 +43,10 @@ document.getElementById("allPersonsButton").addEventListener("click", allPersons
 function allPersons() {
     fetch(allUrl + "all").then(res => res.json())
             .then(data => {
-                var persons = data.all.map(persons =>
-                    "<tr><td>" + persons.id + "</td>" +
-                            "<td>" + persons.fName + "</td>" +
-                            "<td>" + persons.lName + "</td>");
+                var persons = data.all.map(person =>
+                    "<tr><td>" + person.id + "</td>" +
+                            "<td>" + person.fName + "</td>" +
+                            "<td>" + person.lName + "</td>");
 //                            "<td>" + persons.email + "</td></tr>");
             
                     
